@@ -13,7 +13,3 @@
   display: flex;
   justify-content: space-between;
 }
-
-.form > ul > li:last-child {
-  justify-content: center;
-}

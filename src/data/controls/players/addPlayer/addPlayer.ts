@@ -5,7 +5,6 @@ const addPlayer = (playerName: string): Player | undefined => {
   const newPlayer: Player = {
     id: (data.players.length + 1).toString(),
     name: playerName,
-    room: '',
     chips: 1000,
     bet: 0,
     isDealer: false,

@@ -7,7 +7,6 @@ export interface Room {
 export interface Player {
   id: string;
   name: string;
-  room: string;
   chips: number;
   bet: number;
   isDealer: boolean;
