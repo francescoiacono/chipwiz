@@ -6,6 +6,7 @@ interface InputProps {
   min?: number;
   max?: number;
   value?: string;
+  required?: boolean;
 }
 
 const Input = ({ type, handleChange, min, max, value }: InputProps) => {
@@ -16,6 +17,7 @@ const Input = ({ type, handleChange, min, max, value }: InputProps) => {
       min={min}
       max={max}
       value={value}
+      required
       onChange={handleChange}
     />
   );

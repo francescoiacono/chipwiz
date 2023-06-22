@@ -1,0 +1,19 @@
+.form {
+  width: 100%;
+}
+
+.form > ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.form > ul > li {
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.form > ul > li:last-child {
+  justify-content: center;
+}
