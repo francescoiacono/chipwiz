@@ -10,7 +10,15 @@ interface InputProps {
   name?: string;
 }
 
-const Input = ({ type, handleChange, min, max, value, name }: InputProps) => {
+const Input = ({
+  type,
+  handleChange,
+  min,
+  max,
+  value,
+  name,
+  required,
+}: InputProps) => {
   return (
     <input
       className={styles.input}
@@ -18,7 +26,7 @@ const Input = ({ type, handleChange, min, max, value, name }: InputProps) => {
       min={min}
       max={max}
       value={value}
-      required
+      required={required}
       onChange={handleChange}
       name={name}
     />

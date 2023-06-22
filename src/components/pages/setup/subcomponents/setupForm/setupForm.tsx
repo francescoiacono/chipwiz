@@ -51,6 +51,64 @@ const SetupForm = () => {
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    // If the number of players is changed, then the players array is updated
+    if (e.target.name === 'numberOfPlayers') {
+      let numberOfPlayers = Number(e.target.value);
+
+      // If the value is not a number, then the state is reset
+      if (Number.isNaN(numberOfPlayers)) {
+        setPageData({
+          ...pageData,
+          numberOfPlayers: 2,
+        });
+      }
+
+      // If the value is a number
+      else {
+        // If the value is greater than 10, then it is set to 10
+        if (numberOfPlayers > 10) {
+          numberOfPlayers = 10;
+        }
+        // If the value is less than 2, then it is set to 2
+        if (numberOfPlayers < 2) {
+          numberOfPlayers = 2;
+        }
+
+        // The state is updated
+        setPageData((prevState) => {
+          const players = prevState.players.slice(0, numberOfPlayers);
+
+          if (numberOfPlayers > players.length) {
+            // Add new players to the array
+            for (let i = players.length; i < numberOfPlayers; i++) {
+              players.push({
+                id: i.toString() + 1,
+                name: '',
+                chips: 0,
+                bet: 0,
+                isDealer: false,
+                isSmallBlind: false,
+                isBigBlind: false,
+                isFolded: false,
+                isAllIn: false,
+                isWinner: false,
+                isTurn: false,
+              });
+            }
+          } else if (numberOfPlayers < players.length) {
+            // Remove players from the array
+            players.splice(numberOfPlayers);
+          }
+
+          return {
+            ...prevState,
+            numberOfPlayers,
+            players,
+          };
+        });
+      }
+      return;
+    }
     setPageData({ ...pageData, [e.target.name]: e.target.value });
   };
 
@@ -83,10 +141,19 @@ const SetupForm = () => {
     const newRoom = await roomService.createRoom(roomName);
 
     if (newRoom) {
-      console.log('Room created');
+      console.log('Room created', newRoom);
+      for (let i = 0; i < pageData.players.length; i++) {
+        const res = await roomService.addPlayerToRoom(
+          newRoom.id,
+          pageData.players[i].id
+        );
+        if (!res) {
+          console.log('something went wrong');
+          return;
+        }
+        console.log(res);
+      }
     }
-
-    console.log(pageData);
   };
 
   return (

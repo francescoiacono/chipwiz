@@ -40,12 +40,7 @@ const PlayerCard = ({ updatePlayer, id, player }: PlayerCardProps) => {
         </li>
         <li>
           <label>Dealer?</label>
-          <Input
-            type='checkbox'
-            required={false}
-            handleChange={handleChange}
-            name='isDealer'
-          />
+          <Input type='checkbox' handleChange={handleChange} name='isDealer' />
         </li>
       </ul>
     </div>
