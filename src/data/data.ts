@@ -12,7 +12,6 @@ const data = {
           {
             id: '1',
             name: 'Player 1',
-            roomId: '1',
             chips: 1000,
             bet: 0,
             isDealer: false,
@@ -26,7 +25,6 @@ const data = {
           {
             id: '2',
             name: 'Player 2',
-            room: '1',
             chips: 1000,
             bet: 0,
             isDealer: false,
@@ -53,7 +51,6 @@ const data = {
     {
       id: '1',
       name: 'Player 1',
-      roomId: '1',
       chips: 1000,
       bet: 0,
       isDealer: false,
@@ -67,7 +64,6 @@ const data = {
     {
       id: '2',
       name: 'Player 2',
-      room: '1',
       chips: 1000,
       bet: 0,
       isDealer: false,
