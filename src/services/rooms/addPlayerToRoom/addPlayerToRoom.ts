@@ -1,8 +1,8 @@
-import { Room } from '@/data/types/types';
+import { Player, Room } from '@/data/types/types';
 
 const addPlayerToRoom = async (
   roomId: string,
-  playerId: string
+  playerId: Player
 ): Promise<Room> => {
   try {
     const res = await fetch(`/api/room/${roomId}`, {

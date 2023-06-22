@@ -1,5 +1,4 @@
 import roomController from '@/data/controls/rooms/controller';
-import playerController from '@/data/controls/players/controller';
 import { NextResponse } from 'next/server';
 
 export const GET = async (
@@ -23,7 +22,7 @@ export const POST = async (
   const { slug } = params;
   const body = await req.json();
 
-  const player = await playerController.getPlayer(body.playerId);
+  const player = body.player;
 
   if (!player) {
     return NextResponse.json({ error: 'Player not found' }, { status: 404 });

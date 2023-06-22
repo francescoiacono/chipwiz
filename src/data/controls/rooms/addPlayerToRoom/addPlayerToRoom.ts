@@ -7,6 +7,7 @@ const addPlayerToRoom = (roomId: string, player: Player): Room => {
   if (!room) {
     throw new Error(`Room with id ${roomId} not found`);
   }
+
   room.game.players.push(player);
 
   return room;

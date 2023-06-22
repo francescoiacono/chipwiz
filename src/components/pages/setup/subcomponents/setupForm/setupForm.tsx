@@ -141,11 +141,10 @@ const SetupForm = () => {
     const newRoom = await roomService.createRoom(roomName);
 
     if (newRoom) {
-      console.log('Room created', newRoom);
       for (let i = 0; i < pageData.players.length; i++) {
         const res = await roomService.addPlayerToRoom(
           newRoom.id,
-          pageData.players[i].id
+          pageData.players[i]
         );
         if (!res) {
           console.log('something went wrong');
