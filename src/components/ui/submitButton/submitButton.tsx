@@ -2,12 +2,11 @@ import styles from './submitButton.module.css';
 
 interface SubmitButtonProps {
   children: React.ReactNode;
-  handleClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-const SubmitButton = ({ children, handleClick }: SubmitButtonProps) => {
+const SubmitButton = ({ children }: SubmitButtonProps) => {
   return (
-    <button className={styles.submitButton} type='submit' onClick={handleClick}>
+    <button className={styles.submitButton} type='submit'>
       {children}
     </button>
   );

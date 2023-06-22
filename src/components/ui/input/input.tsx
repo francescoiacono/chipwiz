@@ -7,9 +7,10 @@ interface InputProps {
   max?: number;
   value?: string;
   required?: boolean;
+  name?: string;
 }
 
-const Input = ({ type, handleChange, min, max, value }: InputProps) => {
+const Input = ({ type, handleChange, min, max, value, name }: InputProps) => {
   return (
     <input
       className={styles.input}
@@ -19,6 +20,7 @@ const Input = ({ type, handleChange, min, max, value }: InputProps) => {
       value={value}
       required
       onChange={handleChange}
+      name={name}
     />
   );
 };

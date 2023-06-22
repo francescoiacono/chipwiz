@@ -19,5 +19,5 @@ export const POST = async (req: Request): Promise<NextResponse> => {
     return NextResponse.json({ error: 'Room already exists' }, { status: 409 });
   }
 
-  return NextResponse.json({ newRoom }, { status: 200 });
+  return NextResponse.json(newRoom, { status: 200 });
 };
