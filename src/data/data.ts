@@ -1,4 +1,4 @@
-import { Room } from './types/types';
+import { Room, Player } from './types/types';
 
 const data = {
   rooms: [
@@ -48,6 +48,37 @@ const data = {
       },
     },
   ] as Room[],
+
+  players: [
+    {
+      id: '1',
+      name: 'Player 1',
+      roomId: '1',
+      chips: 1000,
+      bet: 0,
+      isDealer: false,
+      isSmallBlind: false,
+      isBigBlind: false,
+      isFolded: false,
+      isAllIn: false,
+      isWinner: false,
+      isTurn: false,
+    },
+    {
+      id: '2',
+      name: 'Player 2',
+      room: '1',
+      chips: 1000,
+      bet: 0,
+      isDealer: false,
+      isSmallBlind: false,
+      isBigBlind: false,
+      isFolded: false,
+      isAllIn: false,
+      isWinner: false,
+      isTurn: false,
+    },
+  ] as Player[],
 };
 
 export default data;
