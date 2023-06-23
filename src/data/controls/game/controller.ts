@@ -1,7 +1,7 @@
-import setGameBlinds from './setGameBlinds/setGameBlinds';
+import updateGameData from './updateGameData/updateGameData';
 
 const controller = {
-  setGameBlinds,
+  updateGameData,
 };
 
 export default controller;

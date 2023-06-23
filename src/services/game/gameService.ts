@@ -1,7 +1,7 @@
-import updateBlinds from './updateBlinds/updateBlinds';
+import updateGame from './updateGame/updateGame';
 
 const gameService = {
-  updateBlinds,
+  updateGame,
 };
 
 export default gameService;

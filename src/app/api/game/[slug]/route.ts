@@ -6,9 +6,9 @@ export const PUT = async (
   { params }: { params: { slug: string } }
 ): Promise<NextResponse> => {
   const { slug } = params;
-  const { smallBlind } = await res.json();
+  const { newProperty } = await res.json();
 
-  const game = gameController.setGameBlinds(slug, smallBlind);
+  const game = gameController.updateGameData(slug, newProperty);
   if (!game) {
     return NextResponse.json({ error: 'Game not found' }, { status: 404 });
   }

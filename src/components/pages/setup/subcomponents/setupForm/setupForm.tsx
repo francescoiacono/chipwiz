@@ -112,7 +112,10 @@ const SetupForm = () => {
       return;
     }
 
-    await gameService.updateBlinds(newRoom.id, smallBlind);
+    await gameService.updateGame(newRoom.id, {
+      smallBlind,
+      bigBlind: smallBlind * 2,
+    });
 
     for (let i = 0; i < players.length; i++) {
       const player = players[i];

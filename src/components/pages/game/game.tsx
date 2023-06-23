@@ -6,6 +6,9 @@ import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { Game } from '@/data/types/types';
 import GameInfo from './subcomponents/gameInfo/gameInfo';
+import styles from './game.module.css';
+import CurrentPlayer from './subcomponents/currentPlayer/currentPlayer';
+import PlayerActions from './subcomponents/playerActions/playerActions';
 
 const Game = () => {
   const { slug } = useParams();
@@ -28,7 +31,7 @@ const Game = () => {
       {isLoading && <p>Loading...</p>}
       {error && <p>Error: {error}</p>}
       {roomData && (
-        <section>
+        <section className={styles.gameSection}>
           <h1>{roomData.name}</h1>
           <GameInfo
             pot={game?.pot}
@@ -37,13 +40,8 @@ const Game = () => {
             smallBlind={game?.smallBlind}
             numberOfPlayers={game?.players.length}
           />
-          <div>Current Player: {game?.players[game.turn].name}</div>
-          <div>
-            <button>fold</button>
-            <button>call</button>
-            <button>check</button>
-            <button>raise</button>
-          </div>
+          <CurrentPlayer player={game?.players[game.turn]} />
+          <PlayerActions />
         </section>
       )}
     </>

@@ -1,0 +1,5 @@
+.gameSection {
+  padding: 1rem;
+  border: 1px solid #e9e9e9;
+  height: calc(100vh - var(--navbar-height) - 2rem);
+}

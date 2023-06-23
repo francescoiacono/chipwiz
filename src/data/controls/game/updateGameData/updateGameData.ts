@@ -1,9 +1,9 @@
 import data from '@/data/data';
 import { Game } from '@/data/types/types';
 
-const setGameBlinds = (
+const updateGameData = (
   roomId: string,
-  smallBlind: number
+  updatedFields: Partial<Game>
 ): Game | undefined => {
   const room = data.rooms.find((room) => room.id === roomId);
 
@@ -11,12 +11,11 @@ const setGameBlinds = (
     return undefined;
   }
 
-  const game = room.game;
+  Object.assign(room.game, updatedFields);
 
-  game.smallBlind = smallBlind;
-  game.bigBlind = smallBlind * 2;
+  console.log('GAME DATA UPDATE:', updatedFields);
 
-  return game;
+  return room.game;
 };
 
-export default setGameBlinds;
+export default updateGameData;
