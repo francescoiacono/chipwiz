@@ -1,14 +1,14 @@
 import data from '@/data/data';
-import { Room } from '@/data/types/types';
+import { Player, Room } from '@/data/types/types';
 
-const addRoom = (name: string): Room => {
+const addRoom = (name: string, players: Player[]): Room => {
   const room: Room = {
     id: Math.random().toString(36).substring(2, 9),
     name,
     game: {
       stage: 0,
       pot: 0,
-      players: [],
+      players: players,
       dealer: 0,
       smallBlind: 0,
       bigBlind: 0,

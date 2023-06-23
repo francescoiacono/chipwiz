@@ -1,13 +1,16 @@
-import { Room } from '@/data/types/types';
+import { Player, Room } from '@/data/types/types';
 
-const createRoom = async (roomName: string): Promise<Room> => {
+const createRoom = async (
+  roomName: string,
+  players: Player[]
+): Promise<Room> => {
   try {
     const res = await fetch(`/api/room`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ roomName }),
+      body: JSON.stringify({ roomName, players }),
     });
 
     if (!res.ok) {

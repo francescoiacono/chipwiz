@@ -13,7 +13,7 @@ export const GET = async (): Promise<NextResponse> => {
 
 export const POST = async (req: Request): Promise<NextResponse> => {
   const body = await req.json();
-  const newRoom = controller.addRoom(body.roomName);
+  const newRoom = controller.addRoom(body.roomName, body.players);
 
   if (!newRoom) {
     return NextResponse.json({ error: 'Room already exists' }, { status: 409 });

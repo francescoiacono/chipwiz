@@ -137,22 +137,10 @@ const SetupForm = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const { roomName } = pageData;
-    const newRoom = await roomService.createRoom(roomName);
+    const { roomName, players } = pageData;
+    const newRoom = await roomService.createRoom(roomName, players);
 
-    if (newRoom) {
-      for (let i = 0; i < pageData.players.length; i++) {
-        const res = await roomService.addPlayerToRoom(
-          newRoom.id,
-          pageData.players[i]
-        );
-        if (!res) {
-          console.log('something went wrong');
-          return;
-        }
-        console.log(res);
-      }
-    }
+    console.log(newRoom);
   };
 
   return (
