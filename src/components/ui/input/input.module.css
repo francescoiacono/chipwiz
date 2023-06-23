@@ -11,3 +11,8 @@
   outline: none;
   border-color: #333;
 }
+
+.input::placeholder {
+  color: #ccc;
+  font-style: italic;
+}

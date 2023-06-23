@@ -7,7 +7,9 @@ interface InputProps {
   max?: number;
   value?: string;
   required?: boolean;
+  checked?: boolean;
   name?: string;
+  placeholder?: string;
 }
 
 const Input = ({
@@ -17,7 +19,9 @@ const Input = ({
   max,
   value,
   name,
+  checked,
   required,
+  placeholder,
 }: InputProps) => {
   return (
     <input
@@ -29,6 +33,8 @@ const Input = ({
       required={required}
       onChange={handleChange}
       name={name}
+      checked={checked}
+      placeholder={placeholder}
     />
   );
 };
