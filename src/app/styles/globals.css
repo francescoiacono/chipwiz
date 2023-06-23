@@ -3,8 +3,8 @@
   --secondary-color: #008000;
   --tertiary-color: #228b22;
   --main-font-color: #c6e1d4;
-  --navbar-height: 60px;
-  --actions-height: 60px;
+  --navbar-height: 3rem;
+  --actions-height: 3rem;
 }
 
 html,
@@ -24,6 +24,11 @@ body {
     var(--tertiary-color)
   ); */
   color: black;
+}
+
+body {
+  width: 50%;
+  margin: 0 auto;
 }
 
 * {

@@ -1,0 +1,24 @@
+.navbar {
+  background-color: #e9e9e9;
+  width: 100%;
+  z-index: 100;
+  padding: 1rem;
+  color: black;
+  margin: 0;
+}
+
+.navbar > ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: var(--navbar-height);
+}
+
+.navbar > ul > li:last-child {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
