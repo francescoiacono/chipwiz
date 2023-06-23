@@ -10,6 +10,7 @@ import PlayerCards from '../playerCards/playerCards';
 import roomService from '@/services/rooms/roomService';
 import playerService from '@/services/players/playerService';
 import { Player } from '@/data/types/types';
+import gameService from '@/services/game/gameService';
 
 const SetupForm = () => {
   const router = useRouter();
@@ -106,6 +107,12 @@ const SetupForm = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const newRoom = await roomService.createRoom(roomName, players);
+
+    if (!newRoom) {
+      return;
+    }
+
+    await gameService.updateBlinds(newRoom.id, smallBlind);
 
     for (let i = 0; i < players.length; i++) {
       const player = players[i];
