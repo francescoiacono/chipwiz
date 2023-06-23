@@ -5,6 +5,7 @@ import SubmitButton from '@/components/ui/submitButton/submitButton';
 import styles from './setupForm.module.css';
 import PlayerCards from '../playerCards/playerCards';
 import roomService from '@/services/rooms/roomService';
+import playerService from '@/services/players/playerService';
 import { useState } from 'react';
 import { Player } from '@/data/types/types';
 
@@ -140,7 +141,11 @@ const SetupForm = () => {
     const { roomName, players } = pageData;
     const newRoom = await roomService.createRoom(roomName, players);
 
-    console.log(newRoom);
+    for (let i = 0; i < players.length; i++) {
+      const player = players[i];
+      const addPlayer = await playerService.addPlayer(player);
+      console.log(addPlayer);
+    }
   };
 
   return (

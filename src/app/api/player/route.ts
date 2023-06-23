@@ -12,7 +12,7 @@ export const POST = async (req: Request): Promise<NextResponse> => {
     );
   }
 
-  return NextResponse.json({ newPlayer }, { status: 200 });
+  return NextResponse.json(newPlayer, { status: 200 });
 };
 
 export const GET = async (): Promise<NextResponse> => {
