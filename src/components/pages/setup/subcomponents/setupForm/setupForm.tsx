@@ -8,6 +8,7 @@ import roomService from '@/services/rooms/roomService';
 import playerService from '@/services/players/playerService';
 import { useState } from 'react';
 import { Player } from '@/data/types/types';
+import { useRouter } from 'next/navigation';
 
 interface SetupForm {
   roomName: string;
@@ -17,6 +18,8 @@ interface SetupForm {
 }
 
 const SetupForm = () => {
+  const router = useRouter();
+
   const [pageData, setPageData] = useState<SetupForm>({
     roomName: '',
     numberOfPlayers: 2,
@@ -143,9 +146,10 @@ const SetupForm = () => {
 
     for (let i = 0; i < players.length; i++) {
       const player = players[i];
-      const addPlayer = await playerService.addPlayer(player);
-      console.log(addPlayer);
+      await playerService.addPlayer(player);
     }
+
+    router.push(`/game/${newRoom.id}`);
   };
 
   return (
