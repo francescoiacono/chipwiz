@@ -1,4 +1,4 @@
-import { Room, Player } from './types/types';
+import { Room, Player, Stage } from './types/types';
 
 const data = {
   rooms: [
@@ -6,8 +6,8 @@ const data = {
       id: '1',
       name: 'Room 1',
       game: {
-        stage: 0,
-        pot: 0,
+        stage: Stage.PreFlop,
+        pot: 999,
         players: [
           {
             id: '1',
@@ -37,8 +37,8 @@ const data = {
           },
         ],
         dealer: 0,
-        smallBlind: 0,
-        bigBlind: 0,
+        smallBlind: 999,
+        bigBlind: 999,
         bet: 0,
         raise: 0,
         call: 0,

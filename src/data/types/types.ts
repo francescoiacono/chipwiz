@@ -32,9 +32,9 @@ export interface Game {
 }
 
 export enum Stage {
-  PreFlop,
-  Flop,
-  Turn,
-  River,
-  Showdown,
+  PreFlop = 'PreFlop',
+  Flop = 'Flop',
+  Turn = 'Turn',
+  River = 'River',
+  Showdown = 'Showdown',
 }
