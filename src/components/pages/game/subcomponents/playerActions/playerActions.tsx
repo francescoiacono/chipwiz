@@ -3,6 +3,7 @@ import styles from './playerActions.module.css';
 import Slider from '@/components/ui/slider/slider';
 import { ActionType } from '@/data/types/types';
 import { useState } from 'react';
+import RaiseAction from './raiseAction/raiseAction';
 
 interface PlayerActionsProps {
   handleClick: () => void;
@@ -17,38 +18,16 @@ const PlayerActions = ({
   actions,
   playerChips,
 }: PlayerActionsProps) => {
-  const [raiseAmount, setRaiseAmount] = useState<number>(0);
-  const [showSlider, setShowSlider] = useState<boolean>(false);
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setRaiseAmount(parseInt(e.target.value));
-  };
-
   return (
     <div className={styles.actions}>
       {actions ? (
         actions.map((action, index) =>
           action === ActionType.Raise ? (
-            <div className={styles.raiseContainer} key={index}>
-              <PrimaryButton
-                key={index}
-                onClick={
-                  !showSlider
-                    ? () => setShowSlider(true)
-                    : () => handleRaise(raiseAmount)
-                }
-              >
-                {action}
-              </PrimaryButton>
-
-              {showSlider && (
-                <Slider
-                  value={raiseAmount}
-                  handleChange={handleChange}
-                  max={playerChips}
-                />
-              )}
-            </div>
+            <RaiseAction
+              key={index}
+              handleRaise={handleRaise}
+              playerChips={playerChips}
+            />
           ) : (
             <PrimaryButton key={index} onClick={handleClick}>
               {action}

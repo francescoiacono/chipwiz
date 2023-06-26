@@ -1,3 +1,5 @@
+import styles from './slider.module.css';
+
 interface SliderProps {
   value?: number;
   min?: number;
@@ -7,7 +9,7 @@ interface SliderProps {
 
 const Slider = ({ value, min, max, handleChange }: SliderProps) => {
   return (
-    <div>
+    <div className={styles.sliderContainer}>
       <input
         type='range'
         min={min || 0}
