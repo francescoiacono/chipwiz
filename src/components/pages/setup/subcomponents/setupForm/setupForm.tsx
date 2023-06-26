@@ -100,6 +100,7 @@ const SetupForm = () => {
         isDealer: playerInfo.isDealer,
         chips: playerInfo.chips,
       };
+
       return updatedPlayers;
     });
   };
@@ -112,9 +113,13 @@ const SetupForm = () => {
       return;
     }
 
+    let dealerIndex = players.findIndex((player) => player.isDealer);
+
     await gameService.updateGame(newRoom.id, {
       smallBlind,
       bigBlind: smallBlind * 2,
+      turn:
+        numberOfPlayers > 2 ? dealerIndex + (3 % numberOfPlayers) : dealerIndex,
     });
 
     for (let i = 0; i < players.length; i++) {
