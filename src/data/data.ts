@@ -1,4 +1,4 @@
-import { Room, Player, Stage } from './types/types';
+import { Room, Player, Stage, ActionType } from './types/types';
 
 const data = {
   rooms: [
@@ -7,7 +7,7 @@ const data = {
       name: 'Room 1',
       game: {
         stage: Stage.PreFlop,
-        pot: 999,
+        pot: 0,
         players: [
           {
             id: '1',
@@ -16,11 +16,11 @@ const data = {
             bet: 0,
             isDealer: true,
             isSmallBlind: true,
-            isBigBlind: true,
+            isBigBlind: false,
             isFolded: false,
             isAllIn: false,
             isWinner: false,
-            isTurn: false,
+            isTurn: true,
           },
           {
             id: '2',
@@ -29,7 +29,7 @@ const data = {
             bet: 0,
             isDealer: false,
             isSmallBlind: false,
-            isBigBlind: false,
+            isBigBlind: true,
             isFolded: false,
             isAllIn: false,
             isWinner: false,
@@ -37,12 +37,19 @@ const data = {
           },
         ],
         dealer: 0,
-        smallBlind: 999,
-        bigBlind: 999,
+        smallBlind: 50,
+        bigBlind: 100,
         bet: 0,
         raise: 0,
         call: 0,
         turn: 0,
+        possibleActions: [
+          ActionType.Fold,
+          ActionType.Check,
+          ActionType.Raise,
+          ActionType.Call,
+          ActionType.AllIn,
+        ],
       },
     },
   ] as Room[],

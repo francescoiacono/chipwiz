@@ -1,6 +1,6 @@
 import { Player } from '@/data/types/types';
 
-const udpatePlayer = async (
+const updatePlayer = async (
   roomId: string,
   playerIndex: number,
   newProperty: Partial<Player>
@@ -17,4 +17,4 @@ const udpatePlayer = async (
   }
 };
 
-export default udpatePlayer;
+export default updatePlayer;

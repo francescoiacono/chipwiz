@@ -1,9 +1,9 @@
 import addPlayer from './addPlayer/addPlayer';
-import udpatePlayer from './updatePlayer/updatePlayer';
+import updatePlayer from './updatePlayer/updatePlayer';
 
 const playerService = {
   addPlayer,
-  udpatePlayer,
+  updatePlayer,
 };
 
 export default playerService;

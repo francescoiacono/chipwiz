@@ -108,26 +108,33 @@ const SetupForm = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    // Find Dealer
     let dealerIndex = players.findIndex((player) => player.isDealer);
+    // Update players roles according to dealer position
     const updatedPlayers = updatePlayerRoles(dealerIndex, players);
 
+    // Create a room with the updated players
     const newRoom = await roomService.createRoom(roomName, updatedPlayers);
-
     if (!newRoom) {
       return;
     }
 
+    // Update game with Room settings
     await gameService.updateGame(newRoom.id, {
       smallBlind,
       bigBlind: smallBlind * 2,
       turn: updatedPlayers.findIndex((player) => player.isTurn),
+      pot: smallBlind + smallBlind * 2,
+      bet: smallBlind * 2,
     });
 
-    for (let i = 0; i < players.length; i++) {
-      const player = players[i];
+    // Add players to players collection
+    for (let i = 0; i < updatedPlayers.length; i++) {
+      const player = updatedPlayers[i];
       await playerService.addPlayer(player);
     }
 
+    // Redirect to game page
     router.push(`/game/${newRoom.id}`);
   };
 

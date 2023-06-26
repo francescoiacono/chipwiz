@@ -29,6 +29,7 @@ export interface Game {
   raise: number;
   call: number;
   turn: number;
+  possibleActions: ActionType[];
 }
 
 export enum Stage {
@@ -37,4 +38,12 @@ export enum Stage {
   Turn = 'Turn',
   River = 'River',
   Showdown = 'Showdown',
+}
+
+export enum ActionType {
+  Fold = 'Fold',
+  Check = 'Check',
+  Raise = 'Raise',
+  Call = 'Call',
+  AllIn = 'All-In',
 }

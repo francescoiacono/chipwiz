@@ -28,7 +28,7 @@ const CurrentPlayer = ({ player }: CurrentPlayerProps) => {
             </div>
             <div>
               <label>Bet:</label>
-              <span>{player.chips}</span>
+              <span>{player.bet}</span>
             </div>
           </div>
         </section>

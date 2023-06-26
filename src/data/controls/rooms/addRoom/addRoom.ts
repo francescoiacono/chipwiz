@@ -1,5 +1,5 @@
 import data from '@/data/data';
-import { Player, Room, Stage } from '@/data/types/types';
+import { ActionType, Player, Room, Stage } from '@/data/types/types';
 
 const addRoom = (name: string, players: Player[]): Room => {
   const room: Room = {
@@ -16,6 +16,13 @@ const addRoom = (name: string, players: Player[]): Room => {
       raise: 0,
       call: 0,
       turn: 0,
+      possibleActions: [
+        ActionType.Fold,
+        ActionType.Check,
+        ActionType.Raise,
+        ActionType.Call,
+        ActionType.AllIn,
+      ],
     },
   };
 

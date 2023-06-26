@@ -1,7 +1,13 @@
 .actions {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  width: 50%;
-  margin: 0 auto;
+  align-items: start;
+  margin: 2rem auto;
+  width: 80%;
+}
+
+.raiseContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }

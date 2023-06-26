@@ -20,11 +20,10 @@ export const PUT = async (
   return NextResponse.json({ players: updatedPlayersInRoom }, { status: 200 });
 };
 
-export const GET = async ({
-  params,
-}: {
-  params: { slug: string };
-}): Promise<NextResponse> => {
+export const GET = async (
+  res: Request,
+  { params }: { params: { slug: string } }
+): Promise<NextResponse> => {
   const { slug } = params;
 
   const playersInRoom = roomController.getRoomPlayers(slug);
