@@ -111,7 +111,9 @@ const SetupForm = () => {
     // Find Dealer
     let dealerIndex = players.findIndex((player) => player.isDealer);
     // Update players roles according to dealer position
-    const updatedPlayers = updatePlayerRoles(dealerIndex, players);
+    const updatedPlayers = updatePlayerRoles(dealerIndex, smallBlind, players);
+
+    console.log(updatedPlayers);
 
     // Create a room with the updated players
     const newRoom = await roomService.createRoom(roomName, updatedPlayers);

@@ -4,9 +4,10 @@ import styles from './currentPlayer.module.css';
 
 interface CurrentPlayerProps {
   player: Player | undefined;
+  bet: number | undefined;
 }
 
-const CurrentPlayer = ({ player }: CurrentPlayerProps) => {
+const CurrentPlayer = ({ player, bet }: CurrentPlayerProps) => {
   return (
     <>
       {player ? (
@@ -27,8 +28,8 @@ const CurrentPlayer = ({ player }: CurrentPlayerProps) => {
               <span>{player.chips}</span>
             </div>
             <div>
-              <label>Bet:</label>
-              <span>{player.bet}</span>
+              <label>To call:</label>
+              <span>{bet && bet - player.bet}</span>
             </div>
           </div>
         </section>

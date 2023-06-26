@@ -6,7 +6,7 @@ import { useState } from 'react';
 import RaiseAction from './raiseAction/raiseAction';
 
 interface PlayerActionsProps {
-  handleClick: () => void;
+  handleClick?: () => void;
   handleRaise: (raiseAmount: number) => void;
   actions: ActionType[] | undefined;
   playerChips: number | undefined;

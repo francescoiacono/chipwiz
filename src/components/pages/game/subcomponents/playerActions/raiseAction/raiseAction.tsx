@@ -22,7 +22,11 @@ const RaiseAction = ({ handleRaise, playerChips }: RaiseActionProps) => {
         onClick={
           !showSlider
             ? () => setShowSlider(true)
-            : () => handleRaise(raiseAmount)
+            : () => {
+                handleRaise(raiseAmount);
+                setShowSlider(false);
+                setRaiseAmount(0);
+              }
         }
       >
         Raise

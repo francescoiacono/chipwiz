@@ -27,7 +27,7 @@ const Game = () => {
     }
   }, [roomData]);
 
-  const handleClick = () => {
+  const handleEndTurn = () => {
     console.log('[Game]:', game?.turn);
 
     setGame((prevGame) => {
@@ -79,6 +79,7 @@ const Game = () => {
     }
   };
 
+  // Function to handle the raise action
   const handleRaise = (raiseAmount: number) => {
     setGame((prevGame) => {
       if (prevGame) {
@@ -90,18 +91,21 @@ const Game = () => {
         }
 
         players[playerTurn].chips -= raiseAmount;
-        players[playerTurn].bet += raiseAmount;
+        players[playerTurn].bet = raiseAmount;
 
         // set pot
 
         return {
           ...prevGame,
           pot: prevGame.pot + raiseAmount,
+          bet: prevGame.bet < raiseAmount ? raiseAmount : prevGame.bet,
           players,
         };
       }
       return prevGame;
     });
+
+    handleEndTurn();
   };
 
   return (
@@ -118,9 +122,8 @@ const Game = () => {
             smallBlind={game?.smallBlind}
             numberOfPlayers={game?.players.length}
           />
-          <CurrentPlayer player={game?.players[game.turn]} />
+          <CurrentPlayer bet={game?.bet} player={game?.players[game.turn]} />
           <PlayerActions
-            handleClick={handleClick}
             handleRaise={handleRaise}
             actions={game?.possibleActions}
             playerChips={game?.players[game.turn].chips}
