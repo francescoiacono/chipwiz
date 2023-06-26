@@ -11,6 +11,7 @@ import roomService from '@/services/rooms/roomService';
 import playerService from '@/services/players/playerService';
 import { Player } from '@/data/types/types';
 import gameService from '@/services/game/gameService';
+import updatePlayerRoles from '@/utils/updatePlayerRoles/updatePlayerRoles';
 
 const SetupForm = () => {
   const router = useRouter();
@@ -107,19 +108,19 @@ const SetupForm = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const newRoom = await roomService.createRoom(roomName, players);
+    let dealerIndex = players.findIndex((player) => player.isDealer);
+    const updatedPlayers = updatePlayerRoles(dealerIndex, players);
+
+    const newRoom = await roomService.createRoom(roomName, updatedPlayers);
 
     if (!newRoom) {
       return;
     }
 
-    let dealerIndex = players.findIndex((player) => player.isDealer);
-
     await gameService.updateGame(newRoom.id, {
       smallBlind,
       bigBlind: smallBlind * 2,
-      turn:
-        numberOfPlayers > 2 ? dealerIndex + (3 % numberOfPlayers) : dealerIndex,
+      turn: updatedPlayers.findIndex((player) => player.isTurn),
     });
 
     for (let i = 0; i < players.length; i++) {

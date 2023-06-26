@@ -23,6 +23,7 @@ const Game = () => {
   useEffect(() => {
     if (roomData) {
       setGame(roomData.game);
+      console.log('Room data:', roomData);
     }
   }, [roomData]);
 
