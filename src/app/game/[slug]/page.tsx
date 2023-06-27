@@ -1,7 +1,7 @@
-import Game from '@/components/pages/game/game';
+import GameSession from '@/components/pages/game/gameSession';
 
 const Page = () => {
-  return <Game />;
+  return <GameSession />;
 };
 
 export default Page;

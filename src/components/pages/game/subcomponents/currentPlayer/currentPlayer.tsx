@@ -1,35 +1,40 @@
 import { Player } from '@/data/types/types';
+import { useGameState } from '@/components/providers/gameStateProvider/gameStateProvider';
 
 import styles from './currentPlayer.module.css';
 
-interface CurrentPlayerProps {
-  player: Player | undefined;
-  bet: number | undefined;
-}
+const CurrentPlayer = () => {
+  const { gameState } = useGameState();
 
-const CurrentPlayer = ({ player, bet }: CurrentPlayerProps) => {
+  if (!gameState) return <></>;
+
+  const { players, bet } = gameState;
+  const currentPlayer = players[gameState.turn];
+
   return (
     <>
-      {player ? (
+      {currentPlayer ? (
         <section className={styles.currentPlayer}>
           <div className={styles.playerTitle}>
-            <h1>{player.name}</h1>
-            {player.isDealer && (
+            <h1>{currentPlayer.name}</h1>
+            {currentPlayer.isDealer && (
               <label className={styles.dealerButton}>D</label>
             )}
-            {player.isSmallBlind && (
+            {currentPlayer.isSmallBlind && (
               <label className={styles.sbButton}>SB</label>
             )}
-            {player.isBigBlind && <label className={styles.bbButton}>BB</label>}
+            {currentPlayer.isBigBlind && (
+              <label className={styles.bbButton}>BB</label>
+            )}
           </div>
           <div className={styles.playerStats}>
             <div>
               <label>Total Chips:</label>
-              <span>{player.chips}</span>
+              <span>{currentPlayer.chips}</span>
             </div>
             <div>
               <label>To call:</label>
-              <span>{bet && bet - player.bet}</span>
+              <span>{bet && bet - currentPlayer.bet}</span>
             </div>
           </div>
         </section>

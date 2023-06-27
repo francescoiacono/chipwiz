@@ -1,22 +1,14 @@
-import { Stage } from '@/data/types/types';
+import { useGameState } from '@/components/providers/gameStateProvider/gameStateProvider';
 
 import styles from './gameInfo.module.css';
 
-interface GameInfoProps {
-  stage: Stage | undefined;
-  pot: number | undefined;
-  smallBlind: number | undefined;
-  bigBlind: number | undefined;
-  numberOfPlayers: number | undefined;
-}
+const GameInfo = () => {
+  const { gameState } = useGameState();
 
-const GameInfo = ({
-  stage,
-  pot,
-  smallBlind,
-  bigBlind,
-  numberOfPlayers,
-}: GameInfoProps) => {
+  if (!gameState) return <></>;
+
+  const { stage, pot, smallBlind, bigBlind, players } = gameState;
+
   return (
     <section className={styles.gameInfo}>
       <label>Stage: {stage}</label>
@@ -24,7 +16,7 @@ const GameInfo = ({
       <label>
         Blinds: {smallBlind}/{bigBlind}
       </label>
-      <label>Players: {numberOfPlayers}</label>
+      <label>Players: {players.length}</label>
     </section>
   );
 };

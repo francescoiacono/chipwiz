@@ -1,6 +1,7 @@
 import Navbar from '@/components/ui/navbar/navbar';
 import './styles/globals.css';
 import { Inter } from 'next/font/google';
+import { GameStateProvider } from '@/components/providers/gameStateProvider/gameStateProvider';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -17,8 +18,10 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body className={inter.className}>
-        <Navbar />
-        {children}
+        <GameStateProvider game={null}>
+          <Navbar />
+          {children}
+        </GameStateProvider>
       </body>
     </html>
   );

@@ -3,12 +3,7 @@ import Slider from '@/components/ui/slider/slider';
 import styles from './raiseAction.module.css';
 import { useState } from 'react';
 
-interface RaiseActionProps {
-  handleRaise: (raiseAmount: number) => void;
-  playerChips: number | undefined;
-}
-
-const RaiseAction = ({ handleRaise, playerChips }: RaiseActionProps) => {
+const RaiseAction = () => {
   const [raiseAmount, setRaiseAmount] = useState<number>(0);
   const [showSlider, setShowSlider] = useState<boolean>(false);
 
@@ -23,7 +18,6 @@ const RaiseAction = ({ handleRaise, playerChips }: RaiseActionProps) => {
           !showSlider
             ? () => setShowSlider(true)
             : () => {
-                handleRaise(raiseAmount);
                 setShowSlider(false);
                 setRaiseAmount(0);
               }
@@ -33,11 +27,7 @@ const RaiseAction = ({ handleRaise, playerChips }: RaiseActionProps) => {
       </PrimaryButton>
 
       {showSlider && (
-        <Slider
-          value={raiseAmount}
-          handleChange={handleRaiseChange}
-          max={playerChips}
-        />
+        <Slider value={raiseAmount} handleChange={handleRaiseChange} />
       )}
     </div>
   );
