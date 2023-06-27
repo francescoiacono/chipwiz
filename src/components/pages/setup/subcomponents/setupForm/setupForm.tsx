@@ -32,6 +32,7 @@ const SetupForm = () => {
       isAllIn: false,
       isWinner: false,
       isTurn: false,
+      isChecked: false,
     },
     {
       id: '2',
@@ -45,6 +46,7 @@ const SetupForm = () => {
       isAllIn: false,
       isWinner: false,
       isTurn: false,
+      isChecked: false,
     },
   ]);
 
@@ -74,6 +76,7 @@ const SetupForm = () => {
                 isAllIn: false,
                 isWinner: false,
                 isTurn: false,
+                isChecked: false,
               });
             }
             return newPlayers;

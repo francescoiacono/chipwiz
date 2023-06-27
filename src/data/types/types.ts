@@ -13,6 +13,7 @@ export interface Player {
   isSmallBlind: boolean;
   isBigBlind: boolean;
   isFolded: boolean;
+  isChecked: boolean;
   isAllIn: boolean;
   isWinner: boolean;
   isTurn: boolean;

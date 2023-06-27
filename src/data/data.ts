@@ -21,6 +21,7 @@ const data = {
             isAllIn: false,
             isWinner: false,
             isTurn: true,
+            isChecked: false,
           },
           {
             id: '2',
@@ -34,6 +35,7 @@ const data = {
             isAllIn: false,
             isWinner: false,
             isTurn: false,
+            isChecked: false,
           },
         ],
         dealer: 0,
@@ -48,7 +50,6 @@ const data = {
           ActionType.Check,
           ActionType.Raise,
           ActionType.Call,
-          ActionType.AllIn,
         ],
       },
     },
@@ -67,6 +68,7 @@ const data = {
       isAllIn: false,
       isWinner: false,
       isTurn: false,
+      isChecked: false,
     },
     {
       id: '2',
@@ -80,6 +82,7 @@ const data = {
       isAllIn: false,
       isWinner: false,
       isTurn: false,
+      isChecked: false,
     },
   ] as Player[],
 };

@@ -14,6 +14,7 @@ const addPlayer = (playerName: string): Player | undefined => {
     isAllIn: false,
     isWinner: false,
     isTurn: false,
+    isChecked: false,
   };
 
   data.players.push(newPlayer);
