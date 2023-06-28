@@ -15,7 +15,7 @@ const GameInterface = () => {
           <PlayerActions />
         </>
       ) : (
-        <label>Game Over</label>
+        <label>Game Over! Select a winner:</label>
       )}
     </>
   );

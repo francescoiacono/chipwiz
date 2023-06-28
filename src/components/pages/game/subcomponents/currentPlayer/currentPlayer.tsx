@@ -1,68 +1,17 @@
-import { useGameState } from '@/components/providers/gameStateProvider/gameStateProvider';
-import { useEffect } from 'react';
-
-import styles from './currentPlayer.module.css';
-import updateGameStage from '@/utils/updateGameStage';
 import LoadingSpinner from '@/components/ui/loadingSpinner/loadingSpinner';
-import { Player } from '@/data/types/types';
+import styles from './currentPlayer.module.css';
+import { useCurrentPlayer } from '@/components/hooks/game';
+import { useGameState } from '@/components/providers/gameStateProvider/gameStateProvider';
 
 const CurrentPlayer = () => {
-  const { gameState, updateGameState } = useGameState();
-  const {
-    players,
-    highestBet,
-    turn,
-    movesInCurrentStage,
-    playersInGame,
-    stage,
-  } = gameState;
-
-  const currentPlayer = players[turn];
+  const { currentPlayer, loading } = useCurrentPlayer();
   const { name, isDealer, isSmallBlind, isBigBlind, chips, bet } =
     currentPlayer || {};
 
-  useEffect(() => {
-    if (!currentPlayer || currentPlayer.isFolded) {
-      updateGameState({
-        ...gameState,
-        turn: (turn + 1) % players.length,
-      });
-      return;
-    } else {
-      // Update the stage if necessary
-      const newStage = updateGameStage(
-        movesInCurrentStage,
-        playersInGame,
-        stage
-      );
-      // Increment the movesInCurrentStage
-      const addMove = newStage === stage ? movesInCurrentStage + 1 : 1; // Reset the movesInCurrentStage if the stage has changed
-      let newHighestBet = highestBet;
-      let resetPlayers: Player[] | null = null;
-      let newTurn = turn;
+  const { gameState } = useGameState();
+  const { highestBet } = gameState;
 
-      // Reset player bet and highest bet on new stage
-      if (newStage !== stage) {
-        console.log('NEW STAGE:', newStage);
-        resetPlayers = players.map((player) => {
-          player.bet = 0;
-          return player;
-        });
-        newHighestBet = 0;
-      }
-
-      updateGameState({
-        ...gameState,
-        movesInCurrentStage: addMove,
-        stage: newStage,
-        highestBet: newHighestBet,
-        players: resetPlayers || players,
-        turn: newTurn,
-      });
-    }
-  }, [turn, currentPlayer]);
-
-  if (!currentPlayer) {
+  if (loading) {
     return <LoadingSpinner />;
   }
 

@@ -7,7 +7,7 @@ const data = {
       name: 'Room 1',
       game: {
         stage: Stage.PreFlop,
-        movesInCurrentStage: 0,
+        movesInCurrentStage: 1,
         playersInGame: 4,
         highestBet: 100,
         pot: 150,
