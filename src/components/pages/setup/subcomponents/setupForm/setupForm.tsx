@@ -1,17 +1,17 @@
 'use client';
 
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
-
 import Input from '@/components/ui/input/input';
 import SubmitButton from '@/components/ui/submitButton/submitButton';
-import styles from './setupForm.module.css';
 import PlayerCards from '../playerCards/playerCards';
 import roomService from '@/services/rooms/roomService';
 import playerService from '@/services/players/playerService';
-import { Player } from '@/data/types/types';
 import gameService from '@/services/game/gameService';
 import updatePlayerRoles from '@/utils/updatePlayerRoles/updatePlayerRoles';
+import styles from './setupForm.module.css';
+
+import { useState } from 'react';
+import { Player } from '@/data/types/types';
+import { useRouter } from 'next/navigation';
 
 const SetupForm = () => {
   const router = useRouter();
