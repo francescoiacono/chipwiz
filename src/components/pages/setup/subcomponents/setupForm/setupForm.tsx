@@ -23,7 +23,7 @@ const SetupForm = () => {
     {
       id: '1',
       name: 'Player 1',
-      chips: smallBlind * 2,
+      chips: smallBlind * 10,
       bet: 0,
       isDealer: false,
       isSmallBlind: false,
@@ -37,7 +37,7 @@ const SetupForm = () => {
     {
       id: '2',
       name: 'Player 2',
-      chips: smallBlind * 2,
+      chips: smallBlind * 10,
       bet: 0,
       isDealer: false,
       isSmallBlind: false,
@@ -67,7 +67,7 @@ const SetupForm = () => {
               newPlayers.push({
                 id: (i + 1).toString(),
                 name: `Player ${i + 1}`,
-                chips: smallBlind * 2,
+                chips: smallBlind * 10,
                 bet: 0,
                 isDealer: false,
                 isSmallBlind: false,

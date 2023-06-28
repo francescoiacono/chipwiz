@@ -18,7 +18,7 @@ const CurrentPlayer = () => {
   } = gameState;
 
   const currentPlayer = players[turn];
-  const { name, isFolded, isDealer, isSmallBlind, isBigBlind, chips, bet } =
+  const { name, isDealer, isSmallBlind, isBigBlind, chips, bet } =
     currentPlayer || {};
 
   useEffect(() => {
@@ -39,13 +39,15 @@ const CurrentPlayer = () => {
       const addMove = newStage === stage ? movesInCurrentStage + 1 : 1; // Reset the movesInCurrentStage if the stage has changed
       let newHighestBet = highestBet;
       let resetPlayers: Player[] | null = null;
+      let newTurn = turn;
 
+      // Reset player bet and highest bet on new stage
       if (newStage !== stage) {
+        console.log('NEW STAGE:', newStage);
         resetPlayers = players.map((player) => {
           player.bet = 0;
           return player;
         });
-
         newHighestBet = 0;
       }
 
@@ -55,9 +57,8 @@ const CurrentPlayer = () => {
         stage: newStage,
         highestBet: newHighestBet,
         players: resetPlayers || players,
+        turn: newTurn,
       });
-
-      console.log('Player Bet', bet, 'Highest Bet', highestBet, 'Stage', stage);
     }
   }, [turn, currentPlayer]);
 
