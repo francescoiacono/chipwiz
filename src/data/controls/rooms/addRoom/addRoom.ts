@@ -8,6 +8,9 @@ const addRoom = (name: string, players: Player[]): Room => {
     game: {
       stage: Stage.PreFlop,
       pot: 0,
+      movesInCurrentStage: 0,
+      playersInGame: players.length,
+      highestBet: 0,
       players: players,
       dealer: 0,
       smallBlind: 0,

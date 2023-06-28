@@ -1,14 +1,17 @@
-import styles from './playerActions.module.css';
-import { ActionType } from '@/data/types/types';
 import RaiseAction from './raiseAction/raiseAction';
-import PrimaryButton from '@/components/ui/primaryButton/primaryButton';
 import CallAction from './callAction/callAction';
+import FoldAction from './foldAction/foldAction';
+
+import styles from './playerActions.module.css';
+import CheckAction from './checkAction/checkAction';
 
 const PlayerActions = () => {
   return (
     <div className={styles.actions}>
       <CallAction />
       <RaiseAction />
+      <CheckAction />
+      <FoldAction />
     </div>
   );
 };

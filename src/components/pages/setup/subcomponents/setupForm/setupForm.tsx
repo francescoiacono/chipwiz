@@ -131,6 +131,7 @@ const SetupForm = () => {
       turn: updatedPlayers.findIndex((player) => player.isTurn),
       pot: smallBlind + smallBlind * 2,
       bet: smallBlind * 2,
+      highestBet: smallBlind * 2,
     });
 
     // Add players to players collection

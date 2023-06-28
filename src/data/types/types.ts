@@ -31,6 +31,9 @@ export interface Game {
   call: number;
   turn: number;
   possibleActions: ActionType[];
+  movesInCurrentStage: number;
+  playersInGame: number;
+  highestBet: number;
 }
 
 export enum Stage {

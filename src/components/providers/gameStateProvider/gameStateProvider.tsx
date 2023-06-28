@@ -4,12 +4,12 @@ import { Game } from '@/data/types/types';
 import React, { useContext } from 'react';
 
 interface GameStateContextProps {
-  gameState: Game | null;
-  setGameState: React.Dispatch<React.SetStateAction<Game | null>>;
+  gameState: Game;
+  updateGameState: (newState: Game) => void;
 }
 
 interface GameStateProviderProps {
-  game: Game | null;
+  game: Game;
   children: React.ReactNode;
 }
 
@@ -21,10 +21,14 @@ export const GameStateProvider = ({
   game,
   children,
 }: GameStateProviderProps) => {
-  const [gameState, setGameState] = React.useState<Game | null>(game);
+  const [gameState, setGameState] = React.useState<Game>(game);
+
+  const updateGameState = (newState: Game) => {
+    setGameState(newState);
+  };
 
   return (
-    <GameStateContext.Provider value={{ gameState, setGameState }}>
+    <GameStateContext.Provider value={{ gameState, updateGameState }}>
       {children}
     </GameStateContext.Provider>
   );

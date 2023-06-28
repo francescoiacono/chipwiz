@@ -2,40 +2,37 @@
 
 import useSWR from 'swr';
 import roomService from '@/services/rooms/roomService';
-import { useParams } from 'next/navigation';
-import { useEffect, useState } from 'react';
 import styles from './gameSession.module.css';
-import { useGameState } from '@/components/providers/gameStateProvider/gameStateProvider';
-import GameInfo from './subcomponents/gameInfo/gameInfo';
-import CurrentPlayer from './subcomponents/currentPlayer/currentPlayer';
-import PlayerActions from './subcomponents/playerActions/playerActions';
+import GameInterface from './subcomponents/gameInterface/gameInterface';
+import { useParams } from 'next/navigation';
+import { GameStateProvider } from '@/components/providers/gameStateProvider/gameStateProvider';
+import { Room } from '@/data/types/types';
+import LoadingSpinner from '@/components/ui/loadingSpinner/loadingSpinner';
 
 const GameSession = () => {
   const { slug } = useParams();
-  const { gameState, setGameState } = useGameState();
-
+  const fetchURL = `/api/room/${slug}`;
   const {
     data: roomData,
     error,
     isLoading,
-  } = useSWR(`/api/room/${slug}`, () => roomService.fetchRoom(slug));
-
-  useEffect(() => {
-    if (roomData) {
-      setGameState(roomData.game);
-    }
-  }, [roomData]);
+  } = useSWR<Room, Error>(fetchURL, () => roomService.fetchRoom(String(slug)));
 
   return (
     <>
-      {isLoading && <p>Loading...</p>}
-      {error && <p>Error: {error}</p>}
-      {roomData && gameState && (
-        <section className={styles.gameSection}>
-          <GameInfo />
-          <CurrentPlayer />
-          <PlayerActions />
-        </section>
+      {isLoading && (
+        <div className={styles.loadingContainer}>
+          <LoadingSpinner />
+        </div>
+      )}
+      {error && <p>Error: {error.message}</p>}
+      {roomData && (
+        <GameStateProvider game={roomData.game}>
+          <section className={styles.gameSection}>
+            <h1>{roomData.name}</h1>
+            <GameInterface />
+          </section>
+        </GameStateProvider>
       )}
     </>
   );
