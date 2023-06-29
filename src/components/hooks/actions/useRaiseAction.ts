@@ -8,6 +8,8 @@ export const useRaiseAction = () => {
   const handleRaise = () => {
     if (!gameState) return;
 
+    console.log('[RAISE]');
+
     // Create a deep copy of the game state and players array
     const updatedGameState = { ...gameState, players: [...gameState.players] };
     const { players } = updatedGameState;

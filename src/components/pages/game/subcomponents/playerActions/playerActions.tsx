@@ -22,8 +22,8 @@ const PlayerActions = () => {
       <h2>Actions</h2>
       <div className={styles.actions}>
         {canCall && <CallAction />}
-        {canRaise && <RaiseAction />}
         {canCheck && <CheckAction />}
+        {canRaise && <RaiseAction />}
         <FoldAction />
       </div>
     </div>

@@ -7,6 +7,8 @@ export const useFoldAction = () => {
   const handleFold = () => {
     if (!gameState) return;
 
+    console.log('[FOLD]');
+
     // Create a deep copy of the game state and players array
     const updatedGameState = { ...gameState, players: [...gameState.players] };
     const { players } = updatedGameState;

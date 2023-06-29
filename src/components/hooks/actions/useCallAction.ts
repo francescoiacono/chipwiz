@@ -4,7 +4,7 @@ export const useCallAction = () => {
   const { gameState, updateGameState } = useGameState();
 
   const handleCall = () => {
-    console.log('call');
+    console.log('[CALL]');
     if (!gameState) return;
 
     // Create a deep copy of the game state and players array
