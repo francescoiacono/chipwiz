@@ -1,15 +1,23 @@
 :root {
+  --primary-color: #81d180;
+  --secondary-color: #fcf0e3;
+  --tertiary-color: #6912bf;
+  --main-font-color: #050300;
+  --background-color: #ffffff;
+  --navbar-height: 3rem;
+  --actions-height: 3rem;
+  --setup-wrapper-width: 30rem;
+  --primary-color-r: 113;
+  --primary-color-g: 243;
+  --primary-color-b: 53;
+}
+
+[data-theme='dark'] {
   --primary-color: #71f335;
   --secondary-color: #41b70b;
   --tertiary-color: #228b22;
   --main-font-color: #eecffc;
-  --navbar-height: 3rem;
-  --actions-height: 3rem;
-  --setup-wrapper-width: 30rem;
   --background-color: #110118;
-  --primary-color-r: 113;
-  --primary-color-g: 243;
-  --primary-color-b: 53;
 }
 
 html,

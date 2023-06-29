@@ -1,3 +1,4 @@
+import ThemeSwitch from '../themeSwitch/themeSwitch';
 import styles from './navbar.module.css';
 import Link from 'next/link';
 
@@ -11,6 +12,7 @@ const Navbar = () => {
         <li>
           <Link href='/'>Home</Link>
           <Link href='/setup'>Setup</Link>
+          <ThemeSwitch />
         </li>
       </ul>
     </nav>
