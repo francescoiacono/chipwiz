@@ -11,8 +11,8 @@ const ShowWinner = ({ playerWinner, pot }: ShowWinnerProps) => {
   return (
     <div className={styles.showWinner}>
       <h1>Congratulations!</h1>
-      {playerWinner.name} wins the pot! {}
-      {`(+${pot})`}
+      {playerWinner.name} wins the pot!
+      <span className={styles.positive}>{`(+${pot})`}</span>
       <PrimaryButton>Continue</PrimaryButton>
     </div>
   );

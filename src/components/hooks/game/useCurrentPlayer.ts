@@ -17,7 +17,7 @@ export const useCurrentPlayer = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const currentPlayer = players[turn] || {};
 
-  useEffect(() => {
+  const updateStage = () => {
     setLoading(true);
     if (!currentPlayer || currentPlayer.isFolded) {
       updateGameState({
@@ -51,7 +51,11 @@ export const useCurrentPlayer = () => {
       });
     }
     setLoading(false);
+  };
+
+  useEffect(() => {
+    updateStage();
   }, [turn, currentPlayer]);
 
-  return { currentPlayer, updateGameState, loading };
+  return { currentPlayer, updateGameState, loading, updateStage };
 };

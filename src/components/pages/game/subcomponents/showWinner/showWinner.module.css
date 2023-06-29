@@ -12,6 +12,11 @@
   border: 3px solid var(--primary-color);
 }
 
+.positive {
+  font-weight: bold;
+  color: var(--positive-color);
+}
+
 @media (max-width: 768px) {
   .showWinner {
     min-width: none;

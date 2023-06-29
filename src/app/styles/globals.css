@@ -11,6 +11,7 @@
   --primary-color-r: 113;
   --primary-color-g: 243;
   --primary-color-b: 53;
+  --positive-color: #32ae4f;
 }
 
 [data-theme='dark'] {

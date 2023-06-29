@@ -5,7 +5,7 @@ const updateGameStage = (
   playersInGame: number,
   stage: Stage
 ) => {
-  if (currentMoves > playersInGame) {
+  if (currentMoves >= playersInGame) {
     switch (stage) {
       case Stage.PreFlop:
         return Stage.Flop;

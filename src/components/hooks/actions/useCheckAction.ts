@@ -6,6 +6,8 @@ export const useCheckAction = () => {
   const handleCheck = () => {
     if (!gameState) return;
 
+    console.log('[CHECK]');
+
     const { movesInCurrentStage, playersInGame, players } = gameState;
 
     // Create a deep copy of the game state
@@ -26,7 +28,6 @@ export const useCheckAction = () => {
           dealerIndex = (dealerIndex + 1) % players.length;
         }
       }
-
       updatedGameState.turn = dealerIndex;
     }
 
