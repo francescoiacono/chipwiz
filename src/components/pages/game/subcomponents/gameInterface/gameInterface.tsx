@@ -1,11 +1,12 @@
-import { Stage } from '@/data/types/types';
 import CurrentPlayer from '../currentPlayer/currentPlayer';
 import GameInfo from '../gameInfo/gameInfo';
 import PlayerActions from '../playerActions/playerActions';
-import { useGameState } from '@/components/providers/gameStateProvider/gameStateProvider';
 import GamePot from '../gamePot/gamePot';
 import styles from './gameInterface.module.css';
 import Divider from '@/components/ui/divider/divider';
+import StageAlert from '../stageAlert/stageAlert';
+import { Stage } from '@/data/types/types';
+import { useGameState } from '@/components/providers/gameStateProvider/gameStateProvider';
 
 const GameInterface = () => {
   const { gameState } = useGameState();
@@ -20,6 +21,7 @@ const GameInterface = () => {
             <GamePot pot={pot} />
             <CurrentPlayer />
             <PlayerActions />
+            <StageAlert stage={stage} />
           </section>
         </>
       ) : (

@@ -2,7 +2,7 @@
   background-color: var(--primary-color);
   border: none;
   border-radius: 5px;
-  color: --var(background-color) !important;
+  color: var(--background-color) !important;
   cursor: pointer;
   font-size: 1.6rem;
   font-weight: 600;

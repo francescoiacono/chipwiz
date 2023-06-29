@@ -1,12 +1,14 @@
+import styles from './gamePot.module.css';
+
 interface GamePotProps {
   pot: number;
 }
 
 const GamePot = ({ pot }: GamePotProps) => {
   return (
-    <div>
-      <h2>Pot</h2>
-      <p>{pot}</p>
+    <div className={styles.gamePot}>
+      <h2 className={styles.potTitle}>Pot</h2>
+      <p className={styles.potValue}>{pot} 💰</p>
     </div>
   );
 };

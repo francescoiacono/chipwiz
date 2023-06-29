@@ -1,0 +1,17 @@
+.gamePot {
+  width: 100%;
+  height: 50%;
+  margin: auto;
+  text-align: center;
+  line-height: 4.5rem;
+}
+
+.potTitle {
+  font-size: 3rem;
+  font-weight: 300;
+}
+
+.potValue {
+  font-size: 5rem;
+  font-weight: 700;
+}
