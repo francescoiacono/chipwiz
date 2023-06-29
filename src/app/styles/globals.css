@@ -1,10 +1,15 @@
 :root {
-  --primary-color: #006400;
-  --secondary-color: #008000;
+  --primary-color: #71f335;
+  --secondary-color: #41b70b;
   --tertiary-color: #228b22;
-  --main-font-color: #c6e1d4;
+  --main-font-color: #eecffc;
   --navbar-height: 3rem;
   --actions-height: 3rem;
+  --setup-wrapper-width: 30rem;
+  --background-color: #110118;
+  --primary-color-r: 113;
+  --primary-color-g: 243;
+  --primary-color-b: 53;
 }
 
 html,
@@ -23,12 +28,8 @@ body {
     var(--secondary-color),
     var(--tertiary-color)
   ); */
-  color: black;
-}
-
-body {
-  width: 50%;
-  margin: 0 auto;
+  color: var(--main-font-color);
+  background-color: var(--background-color);
 }
 
 * {
@@ -54,8 +55,9 @@ p {
   padding: 0;
 }
 
-@media (max-width: 768px) {
-  body {
-    width: 100%;
+@media (max-width: 568px) {
+  :root {
+    --navbar-height: 4rem;
+    --setup-wrapper-width: 100%;
   }
 }

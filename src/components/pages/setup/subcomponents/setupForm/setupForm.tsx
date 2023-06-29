@@ -12,6 +12,7 @@ import styles from './setupForm.module.css';
 import { useState } from 'react';
 import { Player } from '@/data/types/types';
 import { useRouter } from 'next/navigation';
+import Divider from '@/components/ui/divider/divider';
 
 const SetupForm = () => {
   const router = useRouter();
@@ -164,8 +165,9 @@ const SetupForm = () => {
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
-      <ul>
-        <li>
+      <h1>Room Setup</h1>
+      <div className={styles.wrapper}>
+        <div className={styles.roomSetupName}>
           <label>Room Name</label>
           <Input
             type='text'
@@ -175,31 +177,35 @@ const SetupForm = () => {
             min={2}
             placeholder='Your room name'
           />
-        </li>
-        <li>
-          <label>Number of Players</label>
-          <Input
-            type='number'
-            name='numberOfPlayers'
-            required
-            handleChange={handleChange}
-            min={2}
-            max={10}
-            value={numberOfPlayers.toString()}
-          />
-        </li>
-        <li>
-          <label>Small blind</label>
-          <Input
-            type='number'
-            name='smallBlind'
-            required
-            handleChange={handleChange}
-            min={5}
-            value={smallBlind.toString()}
-          />
-        </li>
-      </ul>
+        </div>
+
+        <div className={styles.roomSetupData}>
+          <div className={styles.dataLeft}>
+            <label>Total Players</label>
+            <Input
+              type='number'
+              name='numberOfPlayers'
+              required
+              handleChange={handleChange}
+              min={2}
+              max={10}
+              value={numberOfPlayers.toString()}
+            />
+          </div>
+          <div className={styles.dataRight}>
+            <label>Small blind</label>
+            <Input
+              type='number'
+              name='smallBlind'
+              required
+              handleChange={handleChange}
+              min={5}
+              value={smallBlind.toString()}
+            />
+          </div>
+        </div>
+        <Divider />
+      </div>
       <PlayerCards
         smallBlind={smallBlind}
         players={players}

@@ -41,7 +41,7 @@ const PlayerCard = ({
 
   return (
     <div className={styles.playerCard}>
-      <h3>Player {id}</h3>
+      <h3 className={styles.title}>Player {id}</h3>
       <ul>
         <li>
           <label>Player Name</label>

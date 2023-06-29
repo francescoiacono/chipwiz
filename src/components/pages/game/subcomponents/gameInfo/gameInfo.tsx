@@ -7,12 +7,11 @@ const GameInfo = () => {
 
   if (!gameState) return <></>;
 
-  const { stage, pot, smallBlind, bigBlind, players } = gameState;
+  const { stage, smallBlind, bigBlind, players } = gameState;
 
   return (
     <section className={styles.gameInfo}>
       <label>Stage: {stage}</label>
-      <label>Pot: {pot}</label>
       <label>
         Blinds: {smallBlind}/{bigBlind}
       </label>

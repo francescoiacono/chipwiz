@@ -1,8 +1,6 @@
 .currentPlayer {
-  width: 50%;
-  margin: 1rem auto;
-  border: 1px solid #e9e9e9;
-  border-radius: 0.5rem;
+  border: 1px solid var(--primary-color);
+  border-radius: 0.1rem;
 }
 
 .playerTitle {
@@ -11,8 +9,9 @@
   align-items: center;
   justify-content: center;
   gap: 1rem;
-  background-color: #e9e9e9;
-  border-radius: 0.5rem 0.5rem 0 0;
+  background-color: var(--primary-color);
+  color: var(--background-color);
+  border-radius: 0.1rem 0.1rem 0 0;
 }
 
 .playerTitle > h1 {

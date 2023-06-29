@@ -1,20 +1,60 @@
 .form {
   width: 100%;
+  text-align: center;
 }
 
-.form > ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.form > ul > li {
-  margin-bottom: 1rem;
+.wrapper {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  width: var(--setup-wrapper-width);
+
+  margin: 0 auto;
+  border-radius: 0.3rem;
+
+  gap: 1rem;
+}
+
+.roomSetupData {
+  overflow: auto;
+}
+
+.dataLeft {
+  float: left;
+}
+
+.dataRight {
+  float: right;
+}
+
+.roomSetupData > div {
+  display: flex;
+  flex-direction: column;
+  width: 10rem;
+}
+
+.roomSetupName {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.roomSetupData > div > label,
+.wrapper {
+  font-size: 1rem;
 }
 
 .formSubmitContainer {
   display: flex;
   justify-content: center;
+}
+
+@media (max-width: 500px) {
+  .wrapper {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+  .roomSetupData > div {
+    width: 7.5rem;
+  }
 }
