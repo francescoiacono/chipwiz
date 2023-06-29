@@ -30,11 +30,19 @@ const StageAlert = ({ stage }: StageAlertProps) => {
     return () => clearTimeout(timer);
   }, [stage]);
 
+  const handleBackdropClick = () => {
+    setShowAlert(false);
+  };
+
   if (!showAlert) return null;
+  if (stage === Stage.Showdown || stage == Stage.PreFlop) return null;
 
   return (
     <>
-      <div className={styles.stageAlertBackdrop}></div>
+      <div
+        className={styles.stageAlertBackdrop}
+        onClick={handleBackdropClick}
+      ></div>
       <div className={styles.stageAlert}>
         <p>{randomMessage}</p>
       </div>

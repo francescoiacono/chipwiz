@@ -18,11 +18,14 @@ const PlayerActions = () => {
   const canCheck = currentPlayer.bet >= highestBet || highestBet === 0;
 
   return (
-    <div className={styles.actions}>
-      {canCall && <CallAction />}
-      {canRaise && <RaiseAction />}
-      {canCheck && <CheckAction />}
-      <FoldAction />
+    <div className={styles.actionCard}>
+      <h2>Actions</h2>
+      <div className={styles.actions}>
+        {canCall && <CallAction />}
+        {canRaise && <RaiseAction />}
+        {canCheck && <CheckAction />}
+        <FoldAction />
+      </div>
     </div>
   );
 };

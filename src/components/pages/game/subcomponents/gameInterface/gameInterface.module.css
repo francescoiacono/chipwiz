@@ -1,14 +1,14 @@
 .mainInfoContainer {
   display: grid;
   grid-template-rows: 1fr auto;
-  grid-template-columns: 1fr 2fr 1fr;
-  gap: 10px; /* Optional gap between grid items */
-  min-height: 20rem;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin-top: 1rem;
+  gap: 1rem;
 }
 
-@media (max-width: 568px) {
+@media (max-width: 768px) {
   .mainInfoContainer {
-    grid-template-rows: 1fr auto;
-    grid-template-columns: 1fr 2fr;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr;
   }
 }

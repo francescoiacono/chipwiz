@@ -4,3 +4,9 @@
   justify-content: space-between;
   gap: 1rem;
 }
+
+.gameInfoContainer {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}

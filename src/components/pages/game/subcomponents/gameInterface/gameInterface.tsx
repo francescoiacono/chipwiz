@@ -3,7 +3,6 @@ import GameInfo from '../gameInfo/gameInfo';
 import PlayerActions from '../playerActions/playerActions';
 import GamePot from '../gamePot/gamePot';
 import styles from './gameInterface.module.css';
-import Divider from '@/components/ui/divider/divider';
 import StageAlert from '../stageAlert/stageAlert';
 import { Stage } from '@/data/types/types';
 import { useGameState } from '@/components/providers/gameStateProvider/gameStateProvider';
@@ -16,7 +15,6 @@ const GameInterface = () => {
       {gameState && stage != Stage.Showdown ? (
         <>
           <GameInfo />
-          <Divider />
           <section className={styles.mainInfoContainer}>
             <GamePot pot={pot} />
             <CurrentPlayer />

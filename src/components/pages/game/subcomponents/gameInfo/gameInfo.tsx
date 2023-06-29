@@ -11,11 +11,15 @@ const GameInfo = () => {
 
   return (
     <section className={styles.gameInfo}>
-      <label>Stage: {stage}</label>
-      <label>
-        Blinds: {smallBlind}/{bigBlind}
-      </label>
-      <label>Players: {players.length}</label>
+      <div></div>
+      <div className={styles.gameInfoContainer}>
+        <label>Stage: {stage}</label>
+        <label>
+          Blinds: {smallBlind}/{bigBlind}
+        </label>
+        <label>Players: {players.length}</label>
+      </div>
+      <div></div>
     </section>
   );
 };
