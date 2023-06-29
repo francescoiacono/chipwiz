@@ -4,7 +4,8 @@
 }
 
 .dropdownButton {
-  color: var(--main-font-color);
+  background-color: #fff;
+  color: #000;
   border: none;
   cursor: pointer;
   border-radius: 4px;

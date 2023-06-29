@@ -30,9 +30,8 @@ export const useFoldAction = () => {
         const updatedWinner = {
           ...players[winnerIndex],
           chips: players[winnerIndex].chips + updatedGameState.pot,
-          isWinner: true,
         };
-        players[winnerIndex] = updatedWinner;
+        updatedGameState.playerWinner = updatedWinner;
       }
 
       // Set the updated game state

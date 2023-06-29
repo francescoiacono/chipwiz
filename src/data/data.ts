@@ -9,6 +9,7 @@ const data = {
         stage: Stage.PreFlop,
         movesInCurrentStage: 1,
         playersInGame: 4,
+        playerWinner: null,
         highestBet: 100,
         pot: 150,
         players: [

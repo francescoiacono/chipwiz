@@ -23,6 +23,7 @@ export interface Game {
   stage: Stage;
   pot: number;
   players: Player[];
+  playerWinner: Player | null;
   dealer: number;
   smallBlind: number;
   bigBlind: number;

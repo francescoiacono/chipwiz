@@ -6,10 +6,13 @@ import styles from './gameInterface.module.css';
 import StageAlert from '../stageAlert/stageAlert';
 import { Stage } from '@/data/types/types';
 import { useGameState } from '@/components/providers/gameStateProvider/gameStateProvider';
+import SelectWinner from '../selectWinner/selectWinner';
+import PrimaryButton from '@/components/ui/primaryButton/primaryButton';
+import ShowWinner from '../showWinner/showWinner';
 
 const GameInterface = () => {
   const { gameState } = useGameState();
-  const { stage, pot } = gameState;
+  const { stage, pot, playerWinner } = gameState;
   return (
     <>
       {gameState && stage != Stage.Showdown ? (
@@ -23,7 +26,14 @@ const GameInterface = () => {
           </section>
         </>
       ) : (
-        <label>Game Over! Select a winner:</label>
+        <section className={styles.winnerSection}>
+          <h2>{`The hand's over!`}</h2>
+          {playerWinner ? (
+            <ShowWinner playerWinner={playerWinner} pot={pot} />
+          ) : (
+            <SelectWinner />
+          )}
+        </section>
       )}
     </>
   );
