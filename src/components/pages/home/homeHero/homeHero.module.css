@@ -1,0 +1,16 @@
+.homeHero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - var(--navbar-height) - 5rem);
+}
+
+.homeHero > h1 {
+  font-size: 4rem;
+}
+
+.homeHero > p {
+  font-size: 1.5rem;
+  color: #6f6f6f;
+}
