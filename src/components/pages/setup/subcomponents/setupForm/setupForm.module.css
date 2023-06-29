@@ -15,10 +15,6 @@
   gap: 1rem;
 }
 
-.roomSetupData {
-  overflow: auto;
-}
-
 .dataLeft {
   float: left;
 }

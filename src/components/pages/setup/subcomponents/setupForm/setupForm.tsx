@@ -13,6 +13,7 @@ import { useState } from 'react';
 import { Player } from '@/data/types/types';
 import { useRouter } from 'next/navigation';
 import Divider from '@/components/ui/divider/divider';
+import Dropdown from '@/components/ui/dropdown/dropdown';
 
 const SetupForm = () => {
   const router = useRouter();
@@ -49,6 +50,9 @@ const SetupForm = () => {
       isChecked: false,
     },
   ]);
+  const numberOfPlayersOptions = Array.from({ length: 9 }, (_, i) =>
+    (i + 2).toString()
+  );
 
   const handleRoomNameChange = (value: string) => setRoomName(value);
   const handleSmallBlindChange = (value: number) => setSmallBlind(value);
@@ -182,14 +186,12 @@ const SetupForm = () => {
         <div className={styles.roomSetupData}>
           <div className={styles.dataLeft}>
             <label>Total Players</label>
-            <Input
-              type='number'
-              name='numberOfPlayers'
-              required
-              handleChange={handleChange}
-              min={2}
-              max={10}
-              value={numberOfPlayers.toString()}
+            <Dropdown
+              options={numberOfPlayersOptions}
+              selected={numberOfPlayers.toString()}
+              onSelectedChange={(value) =>
+                handleNumberOfPlayersChange(Number(value))
+              }
             />
           </div>
           <div className={styles.dataRight}>
