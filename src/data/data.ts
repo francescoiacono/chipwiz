@@ -11,6 +11,7 @@ const data = {
         playersInGame: 4,
         playerWinner: null,
         highestBet: 100,
+        sameDealer: false,
         pot: 150,
         players: [
           {

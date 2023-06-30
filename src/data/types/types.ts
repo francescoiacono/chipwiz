@@ -35,6 +35,7 @@ export interface Game {
   movesInCurrentStage: number;
   playersInGame: number;
   highestBet: number;
+  sameDealer: boolean;
 }
 
 export enum Stage {

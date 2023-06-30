@@ -1,5 +1,5 @@
 import { useGameState } from '@/components/providers/gameStateProvider/gameStateProvider';
-import { findNewDealer, findNextTurn } from '@/utils';
+import { findNextTurn } from '@/utils';
 
 export const useCallAction = () => {
   const { gameState, updateGameState } = useGameState();
@@ -33,10 +33,17 @@ export const useCallAction = () => {
     if (updatedGameState.movesInCurrentStage < updatedGameState.playersInGame) {
       updatedGameState.turn = findNextTurn(updatedGameState.turn, players);
     } else {
+      // Find the current dealer
       let dealerIndex = players.findIndex((player) => player.isDealer);
+
+      // Turn boolean to true when current dealer and turn are the same
+      // to trigger component update
+      if (updatedGameState.turn === dealerIndex) {
+        updatedGameState.sameDealer = true;
+      }
+
       updatedGameState.turn = dealerIndex;
     }
-
     // Set the updated game state
     updateGameState(updatedGameState);
   };

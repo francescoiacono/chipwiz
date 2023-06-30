@@ -10,6 +10,7 @@ const addRoom = (name: string, players: Player[]): Room => {
       pot: 0,
       movesInCurrentStage: 0,
       playersInGame: players.length,
+      sameDealer: false,
       playerWinner: null,
       highestBet: 0,
       players: players,

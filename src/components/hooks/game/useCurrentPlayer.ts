@@ -5,7 +5,7 @@ import { useStage } from './useStage';
 
 export const useCurrentPlayer = () => {
   const { gameState, updateGameState } = useGameState();
-  const { players, turn, playersInGame } = gameState;
+  const { players, turn, playersInGame, sameDealer } = gameState;
   const { handleStageUpdate } = useStage();
 
   const [loading, setLoading] = useState<boolean>(false);
@@ -24,14 +24,13 @@ export const useCurrentPlayer = () => {
     }
 
     handleStageUpdate();
-
     setLoading(false);
   };
 
   // Update stage when turn or currentPlayer changes
   useEffect(() => {
     handlePlayerChange();
-  }, [turn, currentPlayer]);
+  }, [turn, currentPlayer, sameDealer]);
 
   return { currentPlayer, loading, handlePlayerChange };
 };

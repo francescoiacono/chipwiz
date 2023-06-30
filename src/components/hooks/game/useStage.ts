@@ -33,6 +33,7 @@ export const useStage = () => {
       stage: newStage,
       highestBet: newHighestBet,
       players: resetPlayers || players,
+      sameDealer: false,
     });
   };
 
