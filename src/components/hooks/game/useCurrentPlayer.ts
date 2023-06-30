@@ -19,6 +19,18 @@ export const useCurrentPlayer = () => {
 
   const updateStage = () => {
     setLoading(true);
+
+    if (currentPlayer.isFolded) {
+      console.log('Player is folded, moving to next player');
+
+      updateGameState({
+        ...gameState,
+        turn: (turn + 1) % players.length,
+      });
+
+      return;
+    }
+
     const newStage = updateGameStage(movesInCurrentStage, playersInGame, stage);
     const addMove = newStage === stage ? movesInCurrentStage + 1 : 1;
     let newHighestBet = highestBet;
