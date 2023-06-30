@@ -13,6 +13,8 @@ export const useFoldAction = () => {
     const updatedGameState = { ...gameState, players: [...gameState.players] };
     const { players } = updatedGameState;
 
+    // Get current player index and create a deep copy of the current player
+    // and update isFolded to true
     const currentPlayerIndex = updatedGameState.turn;
     const updatedCurrentPlayer = {
       ...players[currentPlayerIndex],
@@ -21,13 +23,21 @@ export const useFoldAction = () => {
     updatedGameState.players[currentPlayerIndex] = updatedCurrentPlayer;
     updatedGameState.playersInGame -= 1;
 
-    // If players in Game <= 1
+    console.log(
+      '[FOLD] Updated Players in game:',
+      updatedGameState.playersInGame
+    );
+
+    // If players in Game <= 1 then end the game
     if (updatedGameState.playersInGame <= 1) {
+      console.log('[FOLD] Players in game <= 1');
+
       // End the game
       updatedGameState.stage = Stage.Showdown;
-      // Check which player wins
+      // Find the winner
       const winnerIndex = players.findIndex((p: Player) => !p.isFolded);
 
+      // if there is a winner then update the winner's chips
       if (winnerIndex > -1) {
         const updatedWinner = {
           ...players[winnerIndex],
@@ -41,7 +51,7 @@ export const useFoldAction = () => {
       return;
     }
 
-    // Move to the next player who hasn't folded yet
+    // If players in Game > 1 then, move to the next player who hasn't folded yet
     do {
       updatedGameState.turn = (updatedGameState.turn + 1) % players.length;
     } while (
@@ -51,6 +61,11 @@ export const useFoldAction = () => {
 
     // Reduce Moves in current stage
     updatedGameState.movesInCurrentStage -= 1;
+
+    console.log(
+      '[FOLD] Updated Moves in current stage:',
+      updatedGameState.movesInCurrentStage
+    );
 
     // Set the updated game state
     updateGameState(updatedGameState);

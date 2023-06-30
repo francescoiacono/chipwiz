@@ -1,10 +1,10 @@
 import { useGameState } from '@/components/providers/gameStateProvider/gameStateProvider';
+import { findNextTurn } from '@/utils';
 
 export const useCallAction = () => {
   const { gameState, updateGameState } = useGameState();
 
   const handleCall = () => {
-    console.log('[CALL]');
     if (!gameState) return;
 
     // Create a deep copy of the game state and players array
@@ -22,7 +22,20 @@ export const useCallAction = () => {
     }
 
     updatedGameState.pot += chipsToCall;
-    updatedGameState.turn = (updatedGameState.turn + 1) % players.length;
+
+    if (updatedGameState.movesInCurrentStage < updatedGameState.playersInGame) {
+      console.log('moves', updatedGameState.movesInCurrentStage);
+      console.log('players', updatedGameState.playersInGame);
+
+      updatedGameState.turn = (updatedGameState.turn + 1) % players.length;
+    } else {
+      let dealerIndex = findNextTurn(updatedGameState.players);
+      console.log('[CALL], Dealer Index:', dealerIndex);
+
+      updatedGameState.turn = dealerIndex;
+    }
+
+    console.log('[CALL], Updated Turn:', updatedGameState.turn);
 
     // Set the updated game state
     updateGameState(updatedGameState);

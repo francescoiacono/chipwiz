@@ -2,13 +2,13 @@ import { useState } from 'react';
 import { useGameState } from '@/components/providers/gameStateProvider/gameStateProvider';
 
 export const useRaiseAction = () => {
-  const [raiseAmount, setRaiseAmount] = useState<number>(0);
   const { gameState, updateGameState } = useGameState();
+  const [raiseAmount, setRaiseAmount] = useState<number>(gameState?.smallBlind);
 
   const handleRaise = () => {
     if (!gameState) return;
 
-    console.log('[RAISE]');
+    console.log('[RAISE] Amount:', raiseAmount);
 
     // Create a deep copy of the game state and players array
     const updatedGameState = { ...gameState, players: [...gameState.players] };
@@ -32,7 +32,7 @@ export const useRaiseAction = () => {
     // Set the updated game state
     updateGameState(updatedGameState);
     // Reset the raise amount
-    setRaiseAmount(0);
+    setRaiseAmount(updatedGameState.smallBlind);
   };
 
   const handleSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {

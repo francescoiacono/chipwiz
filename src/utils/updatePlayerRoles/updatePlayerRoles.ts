@@ -18,6 +18,8 @@ const updatePlayerRoles = (
     player.isSmallBlind = false;
     player.isBigBlind = false;
     player.isTurn = false;
+    player.isWinner = false;
+    player.isFolded = false;
   });
 
   if (numberOfPlayers > 2) {
