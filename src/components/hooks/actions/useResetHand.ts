@@ -1,24 +1,11 @@
 import { useGameState } from '@/components/providers/gameStateProvider/gameStateProvider';
 import { Player, Stage } from '@/data/types/types';
-import { updatePlayerRoles } from '@/utils';
+import { findNextDealer, updatePlayerRoles } from '@/utils';
 import { useCallback } from 'react';
 
 export const useResetGame = () => {
   const { gameState, updateGameState } = useGameState();
   const { players } = gameState;
-
-  // Get the index of the next player to be the dealer
-  const getNewDealerIndex = useCallback(
-    (oldDealer: number) => {
-      const newDealer = (oldDealer + 1) % players.length;
-      if (players[newDealer].chips <= 0) {
-        return getNewDealerIndex(newDealer);
-      } else {
-        return newDealer;
-      }
-    },
-    [players]
-  );
 
   const addPotToWinner = useCallback(
     (updatedPlayers: Player[], winner: Player, pot: number) => {
@@ -41,7 +28,8 @@ export const useResetGame = () => {
   const resetGame = useCallback(
     (winner: Player, pot: number) => {
       const oldDealer = players.findIndex((player) => player.isDealer === true);
-      const newDealer = getNewDealerIndex(oldDealer);
+      const newDealer = findNextDealer(oldDealer, players);
+
       let updatedPlayers = updatePlayerRoles(
         newDealer,
         gameState.smallBlind,
@@ -63,7 +51,13 @@ export const useResetGame = () => {
 
       updateGameState(newGameState);
     },
-    [players, getNewDealerIndex, gameState, addPotToWinner, updateGameState]
+    [
+      players,
+      gameState,
+      addPotToWinner,
+      removePlayersWithNoChips,
+      updateGameState,
+    ]
   );
 
   return { resetGame };

@@ -3,7 +3,6 @@ import { useStage } from '../game';
 
 export const useCheckAction = () => {
   const { gameState, updateGameState } = useGameState();
-  const { handleStageUpdate } = useStage();
 
   const handleCheck = () => {
     if (!gameState) return;
@@ -18,11 +17,15 @@ export const useCheckAction = () => {
       updatedGameState.turn =
         (updatedGameState.turn + 1) % updatedGameState.players.length;
     } else {
-      // Find the delaer index and if it's the same as the current one, move to the next stage
+      // Find the current dealer
       let dealerIndex = players.findIndex((player) => player.isDealer);
-      if (dealerIndex === updatedGameState.turn) {
-        handleStageUpdate();
+
+      // Turn boolean to true when current dealer and turn are the same
+      // to trigger component update
+      if (updatedGameState.turn === dealerIndex) {
+        updatedGameState.sameDealer = true;
       }
+
       updatedGameState.turn = dealerIndex;
     }
 

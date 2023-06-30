@@ -1,4 +1,10 @@
 import { Player } from '@/data/types/types';
+import {
+  findNextBigBlind,
+  findNextDealer,
+  findNextSmallBlind,
+  findNextTurn,
+} from '@/utils';
 
 export const updatePlayerRoles = (
   dealerIndex: number,
@@ -9,11 +15,6 @@ export const updatePlayerRoles = (
   const updatedDealerIndex = dealerIndex === -1 ? 0 : dealerIndex;
   const updatedPlayers = players;
   const numberOfPlayers = players.length;
-
-  // Set the small blind, big blind and current turn player indexes
-  const smallBlindIndex = (updatedDealerIndex + 1) % numberOfPlayers;
-  const bigBlindIndex = (updatedDealerIndex + 2) % numberOfPlayers;
-  const turnIndex = (updatedDealerIndex + 3) % numberOfPlayers;
 
   // Reset all player roles
   updatedPlayers.forEach((player) => {
@@ -26,17 +27,25 @@ export const updatePlayerRoles = (
     player.isFolded = false;
   });
 
+  // Set the small blind, big blind and current turn player indexes
+  const smallBlindIndex = findNextTurn(updatedDealerIndex, players);
+  const bigBlindIndex = findNextTurn(smallBlindIndex, players);
+  const turnIndex = findNextTurn(bigBlindIndex, players);
+
   // Set the new player roles and bets
   if (numberOfPlayers > 2) {
     updatedPlayers[updatedDealerIndex].isDealer = true;
     updatedPlayers[smallBlindIndex].isSmallBlind = true;
-    updatedPlayers[smallBlindIndex].chips -= smallBlind;
-    updatedPlayers[smallBlindIndex].bet = smallBlind;
     updatedPlayers[bigBlindIndex].isBigBlind = true;
+
+    // Deduct blinds from small blind and big blind updatedPlayers
+    updatedPlayers[smallBlindIndex].chips -= smallBlind;
     updatedPlayers[bigBlindIndex].chips -= smallBlind * 2;
-    updatedPlayers[bigBlindIndex].bet = smallBlind * 2;
+
+    // Find the next player whose turn it is
     updatedPlayers[turnIndex].isTurn = true;
   } else {
+    // In a 2 player game, the dealer posts the small blind and the other player posts the big blind
     updatedPlayers[updatedDealerIndex].isDealer = true;
     updatedPlayers[updatedDealerIndex].isSmallBlind = true;
     updatedPlayers[updatedDealerIndex].chips -= smallBlind;
@@ -44,7 +53,7 @@ export const updatePlayerRoles = (
     updatedPlayers[smallBlindIndex].isBigBlind = true;
     updatedPlayers[smallBlindIndex].chips -= smallBlind * 2;
     updatedPlayers[smallBlindIndex].bet = smallBlind * 2;
-    updatedPlayers[bigBlindIndex].isTurn = true;
+    updatedPlayers[updatedDealerIndex].isTurn = true; // Dealer acts first pre-flop in a head-to-head game
   }
 
   return updatedPlayers;
