@@ -1,6 +1,6 @@
 import { useGameState } from '@/components/providers/gameStateProvider/gameStateProvider';
 import { useState, useEffect } from 'react';
-import updateGameStage from '@/utils/updateGameStage';
+import { updateGameStage } from '@/utils';
 import { Player } from '@/data/types/types';
 
 export const useCurrentPlayer = () => {
@@ -20,7 +20,8 @@ export const useCurrentPlayer = () => {
   const updateStage = () => {
     setLoading(true);
 
-    if (currentPlayer.isFolded) {
+    // If player is folded or all in, move to next player
+    if (currentPlayer.isFolded || currentPlayer.isAllIn) {
       console.log('Player is folded, moving to next player');
 
       updateGameState({
@@ -31,19 +32,25 @@ export const useCurrentPlayer = () => {
       return;
     }
 
+    // New stage is either a new stage or it stays the same
     const newStage = updateGameStage(movesInCurrentStage, playersInGame, stage);
-    const addMove = newStage === stage ? movesInCurrentStage + 1 : 1;
+
+    // If new stage is the same as the old stage, add 1 to movesInCurrentStage
+    let addMove = movesInCurrentStage + 1;
     let newHighestBet = highestBet;
     let resetPlayers: Player[] | null = null;
 
+    // If new stage is different, reset move, highestBet, and players bets for new stage
     if (newStage !== stage) {
       resetPlayers = players.map((player) => {
         player.bet = 0;
         return player;
       });
       newHighestBet = 0;
+      addMove = 1;
     }
 
+    // Update game state
     updateGameState({
       ...gameState,
       movesInCurrentStage: addMove,
@@ -54,6 +61,7 @@ export const useCurrentPlayer = () => {
     setLoading(false);
   };
 
+  // Update stage when turn or currentPlayer changes
   useEffect(() => {
     updateStage();
   }, [turn, currentPlayer]);

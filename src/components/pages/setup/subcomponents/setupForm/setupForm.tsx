@@ -6,14 +6,14 @@ import PlayerCards from '../playerCards/playerCards';
 import roomService from '@/services/rooms/roomService';
 import playerService from '@/services/players/playerService';
 import gameService from '@/services/game/gameService';
-import updatePlayerRoles from '@/utils/updatePlayerRoles/updatePlayerRoles';
 import styles from './setupForm.module.css';
+import Divider from '@/components/ui/divider/divider';
+import Dropdown from '@/components/ui/dropdown/dropdown';
 
 import { useState } from 'react';
 import { Player } from '@/data/types/types';
 import { useRouter } from 'next/navigation';
-import Divider from '@/components/ui/divider/divider';
-import Dropdown from '@/components/ui/dropdown/dropdown';
+import { updatePlayerRoles } from '@/utils';
 
 const SetupForm = () => {
   const router = useRouter();

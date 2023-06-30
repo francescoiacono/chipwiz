@@ -12,18 +12,13 @@ export const useCheckAction = () => {
 
     // Create a deep copy of the game state
     const updatedGameState = { ...gameState };
-    console.log('[CHECK] Moves in current stage:', movesInCurrentStage);
-    console.log('[CHECK] Players in game:', playersInGame);
 
+    // Move to next player / stage
     if (movesInCurrentStage < playersInGame) {
-      // Move to the next player
-      console.log('Moving to next player');
       updatedGameState.turn =
         (updatedGameState.turn + 1) % updatedGameState.players.length;
     } else {
-      console.log(
-        "Moving to dealer or player who hasn't folded yet (from dealer)"
-      );
+      // Find the delaer index and if it's the same as the current one, move to the next stage
       let dealerIndex = players.findIndex((player) => player.isDealer);
       if (dealerIndex === updatedGameState.turn) {
         updateStage();

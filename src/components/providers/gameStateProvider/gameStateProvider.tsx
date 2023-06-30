@@ -13,9 +13,9 @@ interface GameStateProviderProps {
   children: React.ReactNode;
 }
 
-const GameStateContext = React.createContext<GameStateContextProps | undefined>(
-  undefined
-);
+export const GameStateContext = React.createContext<
+  GameStateContextProps | undefined
+>(undefined);
 
 export const GameStateProvider = ({
   game,

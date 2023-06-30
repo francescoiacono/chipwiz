@@ -1,18 +1,21 @@
 import { Player } from '@/data/types/types';
 
-const updatePlayerRoles = (
+export const updatePlayerRoles = (
   dealerIndex: number,
   smallBlind: number,
   players: Player[]
 ): Player[] => {
+  // If there is no dealer, set the first player as the dealer
   const updatedDealerIndex = dealerIndex === -1 ? 0 : dealerIndex;
   const updatedPlayers = players;
   const numberOfPlayers = players.length;
 
+  // Set the small blind, big blind and current turn player indexes
   const smallBlindIndex = (updatedDealerIndex + 1) % numberOfPlayers;
   const bigBlindIndex = (updatedDealerIndex + 2) % numberOfPlayers;
   const turnIndex = (updatedDealerIndex + 3) % numberOfPlayers;
 
+  // Reset all player roles
   updatedPlayers.forEach((player) => {
     player.isDealer = false;
     player.isSmallBlind = false;
@@ -23,6 +26,7 @@ const updatePlayerRoles = (
     player.isFolded = false;
   });
 
+  // Set the new player roles and bets
   if (numberOfPlayers > 2) {
     updatedPlayers[updatedDealerIndex].isDealer = true;
     updatedPlayers[smallBlindIndex].isSmallBlind = true;
@@ -45,5 +49,3 @@ const updatePlayerRoles = (
 
   return updatedPlayers;
 };
-
-export default updatePlayerRoles;

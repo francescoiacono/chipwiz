@@ -20,9 +20,11 @@ export const useRaiseAction = () => {
       return;
     }
 
+    // Update the current player's bet and chips
     currentPlayer.bet += raiseAmount;
     currentPlayer.chips -= raiseAmount;
 
+    // Update the game state
     updatedGameState.highestBet += raiseAmount;
     updatedGameState.pot += raiseAmount;
     updatedGameState.bet = currentPlayer.bet; // Update the current bet to match the raise
@@ -35,6 +37,7 @@ export const useRaiseAction = () => {
     setRaiseAmount(updatedGameState.smallBlind);
   };
 
+  // Update the raise amount when the slider changes
   const handleSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setRaiseAmount(e.target.valueAsNumber);
   };

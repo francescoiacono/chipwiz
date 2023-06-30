@@ -1,6 +1,6 @@
 import { Stage } from '@/data/types/types';
 
-const updateGameStage = (
+export const updateGameStage = (
   currentMoves: number,
   playersInGame: number,
   stage: Stage
@@ -22,5 +22,3 @@ const updateGameStage = (
     return stage;
   }
 };
-
-export default updateGameStage;
