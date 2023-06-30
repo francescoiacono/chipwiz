@@ -1,9 +1,9 @@
 import { useGameState } from '@/components/providers/gameStateProvider/gameStateProvider';
-import { useCurrentPlayer } from '../game';
+import { useStage } from '../game';
 
 export const useCheckAction = () => {
   const { gameState, updateGameState } = useGameState();
-  const { updateStage } = useCurrentPlayer();
+  const { handleStageUpdate } = useStage();
 
   const handleCheck = () => {
     if (!gameState) return;
@@ -21,7 +21,7 @@ export const useCheckAction = () => {
       // Find the delaer index and if it's the same as the current one, move to the next stage
       let dealerIndex = players.findIndex((player) => player.isDealer);
       if (dealerIndex === updatedGameState.turn) {
-        updateStage();
+        handleStageUpdate();
       }
       updatedGameState.turn = dealerIndex;
     }

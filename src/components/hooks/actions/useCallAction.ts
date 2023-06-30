@@ -1,5 +1,5 @@
 import { useGameState } from '@/components/providers/gameStateProvider/gameStateProvider';
-import { findNextTurn } from '@/utils';
+import { findNewDealer, findNextTurn } from '@/utils';
 
 export const useCallAction = () => {
   const { gameState, updateGameState } = useGameState();
@@ -31,9 +31,9 @@ export const useCallAction = () => {
 
     // Move to next player / stage
     if (updatedGameState.movesInCurrentStage < updatedGameState.playersInGame) {
-      updatedGameState.turn = (updatedGameState.turn + 1) % players.length;
+      updatedGameState.turn = findNextTurn(updatedGameState.turn, players);
     } else {
-      let dealerIndex = findNextTurn(updatedGameState.players);
+      let dealerIndex = players.findIndex((player) => player.isDealer);
       updatedGameState.turn = dealerIndex;
     }
 

@@ -7,10 +7,18 @@ export const useResetGame = () => {
   const { gameState, updateGameState } = useGameState();
   const { players } = gameState;
 
-  const getNewDealerIndex = useCallback(() => {
-    const oldDealer = players.findIndex((player) => player.isDealer === true);
-    return (oldDealer + 1) % players.length;
-  }, [gameState]);
+  // Get the index of the next player to be the dealer
+  const getNewDealerIndex = useCallback(
+    (oldDealer: number) => {
+      const newDealer = (oldDealer + 1) % players.length;
+      if (players[newDealer].chips <= 0) {
+        return getNewDealerIndex(newDealer);
+      } else {
+        return newDealer;
+      }
+    },
+    [players]
+  );
 
   const addPotToWinner = useCallback(
     (updatedPlayers: Player[], winner: Player, pot: number) => {
@@ -26,15 +34,21 @@ export const useResetGame = () => {
     []
   );
 
+  const removePlayersWithNoChips = useCallback((updatedPlayers: Player[]) => {
+    return updatedPlayers.filter((player) => player.chips > 0);
+  }, []);
+
   const resetGame = useCallback(
     (winner: Player, pot: number) => {
-      const newDealer = getNewDealerIndex();
+      const oldDealer = players.findIndex((player) => player.isDealer === true);
+      const newDealer = getNewDealerIndex(oldDealer);
       let updatedPlayers = updatePlayerRoles(
         newDealer,
         gameState.smallBlind,
         gameState.players
       );
       updatedPlayers = addPotToWinner(updatedPlayers, winner, pot);
+      updatedPlayers = removePlayersWithNoChips(updatedPlayers);
 
       const newGameState = {
         ...gameState,
@@ -42,14 +56,14 @@ export const useResetGame = () => {
         pot: gameState.smallBlind + gameState.bigBlind,
         highestBet: gameState.bigBlind,
         movesInCurrentStage: 0,
-        playersInGame: gameState.players.length,
+        playersInGame: updatedPlayers.length,
         stage: Stage.PreFlop,
         playerWinner: null,
       };
 
       updateGameState(newGameState);
     },
-    [gameState, getNewDealerIndex, addPotToWinner]
+    [players, getNewDealerIndex, gameState, addPotToWinner, updateGameState]
   );
 
   return { resetGame };
