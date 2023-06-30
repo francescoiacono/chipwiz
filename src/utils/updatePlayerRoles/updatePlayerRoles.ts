@@ -18,6 +18,7 @@ const updatePlayerRoles = (
     player.isSmallBlind = false;
     player.isBigBlind = false;
     player.isTurn = false;
+    player.isAllIn = false;
     player.isWinner = false;
     player.isFolded = false;
   });

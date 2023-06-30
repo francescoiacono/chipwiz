@@ -10,6 +10,10 @@ const CurrentPlayer = () => {
 
   const { gameState } = useGameState();
   const { highestBet } = gameState;
+  let toCall = highestBet - bet;
+  if (currentPlayer.chips < toCall) {
+    toCall = currentPlayer.chips;
+  }
 
   if (loading) {
     return <LoadingSpinner />;
@@ -30,7 +34,7 @@ const CurrentPlayer = () => {
         </div>
         <div>
           <label>To call:</label>
-          <span>{highestBet && highestBet - bet}</span>
+          <span>{highestBet && toCall}</span>
         </div>
       </div>
     </section>
