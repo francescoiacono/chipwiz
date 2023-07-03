@@ -7,11 +7,12 @@ const Navbar = () => {
     <nav className={styles.navbar}>
       <ul>
         <li>
-          <h2>ChipWiz</h2>
+          <Link id={styles.logo} href='/'>
+            ChipWiz
+          </Link>
         </li>
         <li>
-          <Link href='/'>Home</Link>
-          <Link href='/setup'>Setup</Link>
+          <Link href='/setup'>Create Room</Link>
           <ThemeSwitch />
         </li>
       </ul>

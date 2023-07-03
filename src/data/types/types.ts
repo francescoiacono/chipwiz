@@ -36,6 +36,7 @@ export interface Game {
   playersInGame: number;
   highestBet: number;
   sameDealer: boolean;
+  losers: Player[];
 }
 
 export enum Stage {

@@ -7,6 +7,11 @@
   margin: 0;
 }
 
+#logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
 .navbar > ul {
   margin: 0;
   padding: 0;
@@ -21,4 +26,15 @@
   display: flex;
   align-items: center;
   gap: 1rem;
+}
+
+.navbar > ul > li > a,
+.logo {
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+}
+.navbar > ul > li > a:hover,
+#logo:hover {
+  cursor: pointer;
+  transform: scale(1.05);
 }

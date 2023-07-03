@@ -12,6 +12,22 @@ const data = {
         playerWinner: null,
         highestBet: 100,
         sameDealer: false,
+        losers: [
+          {
+            id: '5',
+            name: 'Loser Player',
+            chips: 0,
+            bet: 0,
+            isDealer: false,
+            isSmallBlind: false,
+            isBigBlind: false,
+            isFolded: false,
+            isAllIn: false,
+            isWinner: false,
+            isTurn: false,
+            isChecked: false,
+          },
+        ],
         pot: 150,
         players: [
           {

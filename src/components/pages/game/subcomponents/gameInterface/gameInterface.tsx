@@ -4,15 +4,15 @@ import PlayerActions from '../playerActions/playerActions';
 import GamePot from '../gamePot/gamePot';
 import styles from './gameInterface.module.css';
 import StageAlert from '../stageAlert/stageAlert';
+import SelectWinner from '../selectWinner/selectWinner';
+import ShowWinner from '../showWinner/showWinner';
 import { Stage } from '@/data/types/types';
 import { useGameState } from '@/components/providers/gameStateProvider/gameStateProvider';
-import SelectWinner from '../selectWinner/selectWinner';
-import PrimaryButton from '@/components/ui/primaryButton/primaryButton';
-import ShowWinner from '../showWinner/showWinner';
+import BustedPlayers from '../bustedPlayers/bustedPlayers';
 
 const GameInterface = () => {
   const { gameState } = useGameState();
-  const { stage, pot, playerWinner } = gameState;
+  const { stage, pot, playerWinner, losers } = gameState;
   return (
     <>
       {gameState && stage != Stage.Showdown ? (
@@ -23,6 +23,7 @@ const GameInterface = () => {
             <CurrentPlayer />
             <PlayerActions />
             <StageAlert stage={stage} />
+            <BustedPlayers losers={losers} />
           </section>
         </>
       ) : (

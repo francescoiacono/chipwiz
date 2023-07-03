@@ -21,6 +21,7 @@ const addRoom = (name: string, players: Player[]): Room => {
       raise: 0,
       call: 0,
       turn: 0,
+      losers: [],
       possibleActions: [
         ActionType.Fold,
         ActionType.Check,

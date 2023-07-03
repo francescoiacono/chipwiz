@@ -22,7 +22,7 @@ export const useResetGame = () => {
   );
 
   const removePlayersWithNoChips = useCallback((updatedPlayers: Player[]) => {
-    return updatedPlayers.filter((player) => player.chips > 0);
+    return updatedPlayers.filter((player) => player.chips <= 0);
   }, []);
 
   const resetGame = useCallback(
@@ -36,7 +36,8 @@ export const useResetGame = () => {
         gameState.players
       );
       updatedPlayers = addPotToWinner(updatedPlayers, winner, pot);
-      updatedPlayers = removePlayersWithNoChips(updatedPlayers);
+
+      updatedPlayers = updatedPlayers.filter((player) => player.chips > 0);
 
       const newGameState = {
         ...gameState,
@@ -47,6 +48,7 @@ export const useResetGame = () => {
         playersInGame: updatedPlayers.length,
         stage: Stage.PreFlop,
         playerWinner: null,
+        losers: removePlayersWithNoChips(players),
       };
 
       updateGameState(newGameState);
